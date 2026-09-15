@@ -36,6 +36,18 @@ body.dark{
   --contour:#5C7566;
   --bg:#12160F;
 }
+body.amoled{
+  --ink:#EDEDED;
+  --slate:#B5B5B5;
+  --slate-soft:#767676;
+  --paper:#141414;
+  --paper-2:#0A0A0A;
+  --line:#1E1E1E;
+  --contour:#3A3A3A;
+  --bg:#000000;
+}
+body.amoled .topbar{background:#000000;border-bottom:1px solid #1A1A1A;}
+body.amoled .fab{box-shadow:none;border:1px solid #000;}
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;height:100%;}
 body{
@@ -93,18 +105,30 @@ body.dark .topbar{background:#0D110C;}
 
 .list{padding:4px 16px 100px;display:flex;flex-direction:column;gap:10px;flex:1;}
 .route-card{
-  background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--contour);
+  background:var(--paper-2);border:1px solid var(--line);
   border-radius:var(--radius);padding:12px 14px;cursor:pointer;
 }
 .route-card:active{background:var(--paper);}
+.route-card.compact{padding:8px 14px;}
+.route-card.compact .rmeta,.route-card.compact .tags-line{display:none;}
+.route-card.compact .rname{font-size:14px;margin-bottom:1px;}
+.route-card.compact .route-stats{font-size:12px;gap:8px;color:var(--slate-soft);}
+.list.compact-list{gap:2px;}
+.list.compact-list .route-card{border-radius:0;border-left:none;border-right:none;}
+.list.compact-list .route-card:first-child{border-radius:var(--radius) var(--radius) 0 0;}
+.list.compact-list .route-card:last-child{border-radius:0 0 var(--radius) var(--radius);}
+.density-btn{
+  background:transparent;border:1px solid var(--slate-soft);color:var(--slate);
+  width:38px;border-radius:var(--radius);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
 .card-top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
 .route-card .rname{font-size:16px;font-weight:700;font-family:Georgia,serif;margin-bottom:2px;}
 .route-card .rmeta{font-size:12px;color:var(--slate-soft);margin-bottom:8px;}
 .route-stats{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:13px;color:var(--slate);}
 .route-stats b{color:var(--ink);}
 .tags-line{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;align-items:center;}
-.tag-pill{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--paper);border:1px solid var(--line);color:var(--slate);}
-.folder-pill{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--slate);color:var(--paper-2);}
+.tag-pill{font-size:11px;padding:2px 8px;border-radius:10px;background:transparent;border:1px solid var(--line);color:var(--slate-soft);}
+.folder-pill{font-size:11px;padding:2px 8px;border-radius:10px;background:transparent;border:1px solid var(--slate-soft);color:var(--slate);}
 .status-badge{font-size:11px;padding:2px 8px;border-radius:10px;}
 .status-badge.pendiente{background:#e8dfc4;color:#7a6a2c;}
 .status-badge.hecha{background:#d7e6da;color:#2f6b46;}
@@ -234,6 +258,7 @@ body.dark .deviation-warn{background:#3a2716;color:#f0b98a;}
 
   <div class="search-row">
     <input type="text" class="search-input" id="searchInput" placeholder="">
+    <button class="density-btn" id="btnDensity"></button>
     <button class="filter-toggle" id="btnFilters"></button>
   </div>
   <div class="chip-row" id="folderChipRow"></div>
@@ -316,6 +341,10 @@ const STRINGS = {
   themeLabel:["Tema","Itxura"],
   themeLightBtn:["Claro","Argia"],
   themeDarkBtn:["Oscuro","Iluna"],
+  themeAmoledBtn:["AMOLED","AMOLED"],
+  viewLabel:["Vista de la lista","Zerrendaren ikuspegia"],
+  viewComfortBtn:["Normal","Arrunta"],
+  viewCompactBtn:["Compacta","Trinkoa"],
   languageLabel:["Idioma","Hizkuntza"],
   langEu:["Euskera","Euskara"],
   langEs:["Español","Gaztelania"],
@@ -460,6 +489,22 @@ function t(key, vars){
 }
 function statusLabel(s){ return s==="hecha" ? t("statusHecha") : (s==="pendiente" ? t("statusPendiente") : ""); }
 function dateLocale(){ return state.settings.lang==="eu" ? "eu" : "es-ES"; }
+function applyTheme(){
+  document.body.classList.toggle("dark", state.settings.theme==="dark");
+  document.body.classList.toggle("amoled", state.settings.theme==="amoled");
+}
+function updateDensityBtn(){
+  const b = document.getElementById("btnDensity");
+  if(!b) return;
+  b.textContent = state.settings.listDensity==="compact" ? "▦" : "☰";
+  b.title = state.settings.listDensity==="compact" ? t("viewComfortBtn") : t("viewCompactBtn");
+}
+async function toggleDensity(){
+  state.settings.listDensity = state.settings.listDensity==="compact" ? "comfortable" : "compact";
+  await dbSet("settings", state.settings);
+  updateDensityBtn();
+  renderList();
+}
 
 /* ============================================================
    Storage (IndexedDB) — funciona sin conexión, sin servidor
@@ -654,7 +699,7 @@ function routeToGPXString(full){
 let state = {
   index: [],
   folders: [],
-  settings: {speedKmh: 4, method: "naismith", units: "metric", theme: "light", mapLayer: "osm", lang: "eu"},
+  settings: {speedKmh: 4, method: "naismith", units: "metric", theme: "light", mapLayer: "osm", lang: "eu", listDensity: "comfortable"},
   filters: {q:"", folderId:"all", tags:[], distMin:null, distMax:null, gainMin:null, gainMax:null, timeMin:null, timeMax:null, favOnly:false, status:"", sort:"date_desc"}
 };
 
@@ -663,10 +708,12 @@ const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,8);
 async function init(){
   state.index = await dbGet("index", []);
   state.folders = await dbGet("folders", []);
-  state.settings = Object.assign({speedKmh:4, method:"naismith", units:"metric", theme:"light", mapLayer:"osm", lang:"eu"}, await dbGet("settings", {}));
-  document.body.classList.toggle("dark", state.settings.theme==="dark");
+  state.settings = Object.assign({speedKmh:4, method:"naismith", units:"metric", theme:"light", mapLayer:"osm", lang:"eu", listDensity:"comfortable"}, await dbGet("settings", {}));
+  applyTheme();
   document.documentElement.lang = state.settings.lang;
   document.getElementById("searchInput").placeholder = t("searchPlaceholder");
+  document.getElementById("btnDensity").onclick = toggleDensity;
+  updateDensityBtn();
   render();
   if(storageBroken){
     alert(t("storageBrokenAlert"));
@@ -768,10 +815,12 @@ function renderList(){
     document.getElementById("clearFiltersBtn").onclick = ()=>{ resetFilters(); render(); };
     return;
   }
+  const compact = state.settings.listDensity==="compact";
+  routeListEl.classList.toggle("compact-list", compact);
   routeListEl.innerHTML = list.map(r=>{
     const tt = timeForRoute(r);
     const fname = folderName(r.folderId);
-    return `<div class="route-card" data-id="${r.id}">
+    return `<div class="route-card ${compact?'compact':''}" data-id="${r.id}">
       <div class="card-top-row">
         <div class="rname">${escapeHtml(r.name)}</div>
         <button class="star-btn ${r.favorite?'on':''}" data-star="${r.id}">★</button>
@@ -1043,8 +1092,14 @@ function openSettingsSheet(){
     </div>
     <label>${t("themeLabel")}</label>
     <div class="tabbar">
-      <button data-theme="light" class="${s.theme!=='dark'?'active':''}">${t("themeLightBtn")}</button>
+      <button data-theme="light" class="${s.theme!=='dark'&&s.theme!=='amoled'?'active':''}">${t("themeLightBtn")}</button>
       <button data-theme="dark" class="${s.theme==='dark'?'active':''}">${t("themeDarkBtn")}</button>
+      <button data-theme="amoled" class="${s.theme==='amoled'?'active':''}">${t("themeAmoledBtn")}</button>
+    </div>
+    <label>${t("viewLabel")}</label>
+    <div class="tabbar">
+      <button data-density="comfortable" class="${s.listDensity!=='compact'?'active':''}">${t("viewComfortBtn")}</button>
+      <button data-density="compact" class="${s.listDensity==='compact'?'active':''}">${t("viewCompactBtn")}</button>
     </div>
     <button class="btn btn-primary" id="saveSettings">${t("savePrefsBtn")}</button>
 
@@ -1060,11 +1115,12 @@ function openSettingsSheet(){
     <button class="tools-btn" id="btnMergeTool">${t("mergeToolBtn")}</button>
   `);
 
-  let method = s.method, units = s.units, theme = s.theme, lang = s.lang;
+  let method = s.method, units = s.units, theme = s.theme, lang = s.lang, density = s.listDensity;
   overlay.querySelectorAll("[data-method]").forEach(b=> b.onclick=()=>{ method=b.dataset.method; overlay.querySelectorAll("[data-method]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
   overlay.querySelectorAll("[data-units]").forEach(b=> b.onclick=()=>{ units=b.dataset.units; overlay.querySelectorAll("[data-units]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
   overlay.querySelectorAll("[data-theme]").forEach(b=> b.onclick=()=>{ theme=b.dataset.theme; overlay.querySelectorAll("[data-theme]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
   overlay.querySelectorAll("[data-lang]").forEach(b=> b.onclick=()=>{ lang=b.dataset.lang; overlay.querySelectorAll("[data-lang]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
+  overlay.querySelectorAll("[data-density]").forEach(b=> b.onclick=()=>{ density=b.dataset.density; overlay.querySelectorAll("[data-density]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
 
   overlay.querySelector("#saveSettings").onclick = async ()=>{
     const speed = parseFloat(overlay.querySelector("#setSpeed").value);
@@ -1073,9 +1129,11 @@ function openSettingsSheet(){
     state.settings.units = units;
     state.settings.theme = theme;
     state.settings.lang = lang;
-    document.body.classList.toggle("dark", theme==="dark");
+    state.settings.listDensity = density;
+    applyTheme();
     document.documentElement.lang = lang;
     document.getElementById("searchInput").placeholder = t("searchPlaceholder");
+    updateDensityBtn();
     await dbSet("settings", state.settings);
     closeOverlay();
     render();
