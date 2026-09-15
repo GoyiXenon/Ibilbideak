@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="eu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<title>Cumbre · Rutas de montaña</title>
+<title>Ibilbideak</title>
 <meta name="theme-color" content="#1F2A24">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Cumbre">
+<meta name="apple-mobile-web-app-title" content="Ibilbideak">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -54,7 +54,6 @@ h1,h2,h3{
 button{font-family:inherit;}
 #app{max-width:640px;margin:0 auto;min-height:100vh;background:var(--bg);display:flex;flex-direction:column;position:relative;}
 
-/* Top bar */
 .topbar{
   position:sticky;top:0;z-index:20;
   background:var(--ink);color:var(--paper-2);
@@ -73,7 +72,6 @@ body.dark .topbar{background:#0D110C;}
 .icon-btn:active{background:rgba(246,243,233,0.15);}
 .top-actions{display:flex;gap:8px;}
 
-/* Search + filter row */
 .search-row{padding:12px 16px 8px;display:flex;gap:8px;}
 .search-input{
   flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius);
@@ -93,7 +91,6 @@ body.dark .topbar{background:#0D110C;}
 }
 .chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper-2);}
 
-/* Route list */
 .list{padding:4px 16px 100px;display:flex;flex-direction:column;gap:10px;flex:1;}
 .route-card{
   background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--contour);
@@ -120,7 +117,6 @@ body.dark .status-badge.hecha{background:#1e3327;color:#bfe3cd;}
 .empty-state h2{color:var(--slate);font-size:19px;margin-bottom:8px;}
 .empty-state p{font-size:14px;line-height:1.5;margin:0 0 18px;}
 
-/* FAB */
 .fab{
   position:fixed;bottom:24px;right:calc(50% - 320px + 24px);z-index:30;
   width:56px;height:56px;border-radius:50%;background:var(--ascent);color:#fff;border:none;
@@ -128,7 +124,6 @@ body.dark .status-badge.hecha{background:#1e3327;color:#bfe3cd;}
 }
 @media (max-width:688px){ .fab{right:24px;} }
 
-/* Modals / sheets */
 .overlay{position:fixed;inset:0;background:rgba(20,22,18,0.55);z-index:50;display:flex;align-items:flex-end;justify-content:center;}
 .sheet{
   background:var(--bg);width:100%;max-width:640px;max-height:90vh;overflow-y:auto;
@@ -153,7 +148,6 @@ textarea.notes-input{font-family:inherit;font-size:14px;min-height:70px;}
 .btn{padding:11px 16px;border-radius:var(--radius);border:none;font-size:14px;cursor:pointer;font-weight:600;}
 .btn-primary{background:var(--ascent);color:#fff;width:100%;margin-top:16px;}
 .btn-secondary{background:transparent;border:1px solid var(--slate);color:var(--slate);width:100%;margin-top:8px;}
-.btn-danger{background:transparent;border:1px solid #a33;color:#a33;}
 .tag-input-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:8px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-2);}
 .tag-input-wrap input{border:none;background:transparent;flex:1;min-width:80px;padding:2px;font-size:14px;}
 .tag-editable{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:3px 8px;font-size:12px;display:flex;align-items:center;gap:5px;}
@@ -171,7 +165,6 @@ textarea.notes-input{font-family:inherit;font-size:14px;min-height:70px;}
 .checkbox-row{display:flex;align-items:center;gap:8px;margin:14px 0 5px;}
 .checkbox-row input{width:auto;}
 
-/* Photos */
 .photo-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
 .photo-thumb-wrap{position:relative;}
 .photo-thumb{width:72px;height:72px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);cursor:pointer;display:block;}
@@ -180,7 +173,6 @@ textarea.notes-input{font-family:inherit;font-size:14px;min-height:70px;}
 .photo-viewer img{max-width:94%;max-height:94%;border-radius:4px;}
 .photo-viewer button{position:absolute;top:16px;right:16px;background:none;border:none;color:#fff;font-size:30px;cursor:pointer;}
 
-/* Detail view */
 .detail{position:fixed;inset:0;background:var(--bg);z-index:40;display:flex;flex-direction:column;max-width:640px;margin:0 auto;}
 .detail-top{
   display:flex;align-items:center;justify-content:space-between;padding:14px 16px;
@@ -210,13 +202,11 @@ textarea.notes-input{font-family:inherit;font-size:14px;min-height:70px;}
 .sort-row{display:flex;gap:8px;align-items:center;margin-top:14px;}
 .sort-row select{flex:1;}
 
-/* Track edit */
 .edit-toolbar{padding:14px 16px;background:var(--paper-2);border-top:1px solid var(--line);}
 .edit-toolbar .row{display:flex;gap:10px;align-items:center;margin-bottom:10px;}
 .edit-toolbar .row span.lbl-sm{width:44px;font-size:12px;color:var(--slate-soft);flex:0 0 auto;}
 .edit-toolbar input[type=range]{flex:1;}
 
-/* Live tracking */
 .live-topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));background:var(--ink);color:var(--paper-2);}
 #liveMap{height:44vh;width:100%;background:var(--paper);}
 .live-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px;}
@@ -234,17 +224,17 @@ body.dark .deviation-warn{background:#3a2716;color:#f0b98a;}
   <div class="topbar">
     <div class="brand">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-11 4 6 3-4 5 9H3z"/><circle cx="18" cy="6" r="2"/></svg>
-      <h1>Cumbre</h1>
+      <h1>Ibilbideak</h1>
     </div>
     <div class="top-actions">
-      <button class="icon-btn" id="btnFolders" title="Carpetas">🗂</button>
-      <button class="icon-btn" id="btnSettings" title="Ajustes">⚙</button>
+      <button class="icon-btn" id="btnFolders" title="Karpetak">🗂</button>
+      <button class="icon-btn" id="btnSettings" title="Ezarpenak">⚙</button>
     </div>
   </div>
 
   <div class="search-row">
-    <input type="text" class="search-input" id="searchInput" placeholder="Buscar rutas…">
-    <button class="filter-toggle" id="btnFilters">Filtros</button>
+    <input type="text" class="search-input" id="searchInput" placeholder="">
+    <button class="filter-toggle" id="btnFilters"></button>
   </div>
   <div class="chip-row" id="folderChipRow"></div>
 
@@ -259,7 +249,220 @@ body.dark .deviation-warn{background:#3a2716;color:#f0b98a;}
 "use strict";
 
 /* ============================================================
-   Storage (IndexedDB) — works fully offline, no server needed
+   i18n — [es, eu] pairs. Diseinua "Ibilbideak" markarena finkoa da,
+   ez da itzultzen (izena da).
+   ============================================================ */
+const STRINGS = {
+  searchPlaceholder:["Buscar rutas…","Ibilbideak bilatu…"],
+  filtersBtn:["Filtros","Iragazkiak"],
+  folderAll:["Todas","Denak"],
+  folderNone:["Sin carpeta","Karpetarik gabe"],
+  emptyTitle:["Todavía no hay rutas","Oraindik ez dago ibilbiderik"],
+  emptyDesc:["Añade tu primer track GPX de montaña para ver el mapa, el perfil de elevación y las estadísticas de la ruta.","Gehitu zure lehen mendiko GPX ibilbidea, mapa, desnibel-profila eta estatistikak ikusteko."],
+  emptyAddBtn:["Añadir ruta","Ibilbidea gehitu"],
+  noResultsTitle:["Sin resultados","Emaitzarik ez"],
+  noResultsDesc:["Ninguna ruta cumple los filtros actuales. Prueba a ampliarlos.","Ibilbide bat ere ez dator bat uneko iragazkiekin. Zabaldu itzazu."],
+  clearFiltersBtn:["Quitar filtros","Iragazkiak kendu"],
+  statusPendiente:["Pendiente","Egiteko"],
+  statusHecha:["Hecha","Eginda"],
+
+  filtersTitle:["Filtros","Iragazkiak"],
+  favOnlyChip:["★ Solo favoritas","★ Gogokoak soilik"],
+  folderLabel:["Carpeta","Karpeta"],
+  allFoldersOpt:["Todas las carpetas","Karpeta guztiak"],
+  statusLabel:["Estado","Egoera"],
+  allStatusOpt:["Todos los estados","Egoera guztiak"],
+  pendingOpt:["Pendientes","Egiteko daudenak"],
+  doneOpt:["Hechas","Eginda daudenak"],
+  tagsLabel:["Etiquetas","Etiketak"],
+  noTagsHint:["Todavía no hay etiquetas creadas.","Oraindik ez da etiketarik sortu."],
+  distanceLabelTpl:["Distancia ({u})","Distantzia ({u})"],
+  gainLabelTpl:["Desnivel positivo ({u})","Desnibel positiboa ({u})"],
+  timeLabelTpl:["Tiempo estimado (horas) — método: {m}","Kalkulatutako denbora (orduak) — metodoa: {m}"],
+  methodSimpleWord:["velocidad simple","abiadura sinplea"],
+  methodNaismithWord:["Naismith","Naismith"],
+  sortLabel:["Ordenar por","Ordenatu honela"],
+  sortDateDesc:["Más recientes primero","Berrienak lehenbizi"],
+  sortDateAsc:["Más antiguas primero","Zaharrenak lehenbizi"],
+  sortNameAsc:["Nombre (A-Z)","Izena (A-Z)"],
+  sortDistDesc:["Distancia (mayor a menor)","Distantzia (handitik txikira)"],
+  sortDistAsc:["Distancia (menor a mayor)","Distantzia (txikitik handira)"],
+  sortGainDesc:["Desnivel + (mayor a menor)","Desnibel + (handitik txikira)"],
+  sortTimeAsc:["Tiempo estimado (menor a mayor)","Kalkulatutako denbora (txikitik handira)"],
+  applyFiltersBtn:["Aplicar filtros","Iragazkiak aplikatu"],
+  clearAllFiltersBtn:["Quitar todos los filtros","Iragazki guztiak kendu"],
+  minPh:["mín","gutx."],
+  maxPh:["máx","geh."],
+
+  foldersTitle:["Carpetas","Karpetak"],
+  noFoldersHint:["Sin carpetas todavía.","Oraindik ez dago karpetarik."],
+  newFolderLabel:["Nueva carpeta","Karpeta berria"],
+  newFolderPh:["Ej. Pirineos","Adib. Pirinioak"],
+  createFolderBtn:["Crear carpeta","Karpeta sortu"],
+  renameBtn:["Renombrar","Izena aldatu"],
+  deleteBtn:["Eliminar","Ezabatu"],
+  renamePromptMsg:["Nuevo nombre de la carpeta:","Karpetaren izen berria:"],
+  deleteFolderConfirmMsg:["¿Eliminar esta carpeta? Las rutas pasarán a \"Sin carpeta\".","Karpeta hau ezabatu? Ibilbideak \"Karpetarik gabe\" egoerara pasatuko dira."],
+
+  settingsTitle:["Ajustes","Ezarpenak"],
+  prefsSection:["Preferencias","Hobespenak"],
+  speedLabel:["Velocidad media al caminar (km/h)","Oinez batez besteko abiadura (km/h)"],
+  methodLabel:["Método de cálculo de tiempo","Denbora kalkulatzeko metodoa"],
+  methodSimpleBtn:["Velocidad simple","Abiadura sinplea"],
+  methodNaismithBtn:["Regla de Naismith","Naismith araua"],
+  unitsLabel:["Unidades","Unitateak"],
+  unitsMetricBtn:["km / m","km / m"],
+  unitsImperialBtn:["mi / ft","mi / ft"],
+  themeLabel:["Tema","Itxura"],
+  themeLightBtn:["Claro","Argia"],
+  themeDarkBtn:["Oscuro","Iluna"],
+  languageLabel:["Idioma","Hizkuntza"],
+  langEu:["Euskera","Euskara"],
+  langEs:["Español","Gaztelania"],
+  savePrefsBtn:["Guardar preferencias","Hobespenak gorde"],
+  backupSection:["Copia de seguridad","Babeskopia"],
+  backupDesc:["Exporta todas tus rutas, carpetas y ajustes a un archivo. Guárdalo donde quieras para no perder tu trabajo si algún día borras los datos del navegador.","Esportatu zure ibilbide, karpeta eta ezarpen guztiak fitxategi batera. Gorde nahi duzun lekuan, nabigatzailearen datuak noizbait ezabatzen badituzu ere lana ez galtzeko."],
+  exportBackupBtn:["Exportar copia de seguridad","Babeskopia esportatu"],
+  importBackupBtn:["Importar copia de seguridad","Babeskopia inportatu"],
+  toolsSection:["Herramientas","Tresnak"],
+  mergeToolBtn:["🔗 Unir dos rutas en una","🔗 Bi ibilbide bat bakarrean batu"],
+
+  invalidJsonAlert:["El archivo no es un JSON válido.","Fitxategia ez da baliozko JSON bat."],
+  invalidFormatAlert:["El archivo no tiene el formato esperado de una copia de seguridad de Ibilbideak.","Fitxategiak ez du Ibilbideak aplikazioaren babeskopia baten formatua."],
+  confirmImportTpl:["Se añadirán {n} rutas importadas a tu colección actual (no se borra nada). ¿Continuar?","{n} ibilbide inportatuko dira zure bildumara (ezer ez da ezabatuko). Jarraitu?"],
+  importedAlertTpl:["Importadas {n} rutas.","{n} ibilbide inportatu dira."],
+
+  mergeTitle:["Unir dos rutas","Bi ibilbide batu"],
+  mergeNeedTwoAlert:["Necesitas al menos dos rutas guardadas para poder unirlas.","Gutxienez bi ibilbide gordeta behar dituzu batzeko."],
+  mergeDesc:["Se creará una ruta nueva concatenando los puntos de la ruta A seguida de la ruta B. Las rutas originales no se modifican.","A ibilbidearen puntuak eta ondoren B ibilbidearenak batuz, ibilbide berri bat sortuko da. Jatorrizko ibilbideak ez dira aldatuko."],
+  mergeALabel:["Ruta A (inicio)","A ibilbidea (hasiera)"],
+  mergeBLabel:["Ruta B (continuación)","B ibilbidea (jarraipena)"],
+  mergeNameLabel:["Nombre de la ruta combinada","Ibilbide konbinatuaren izena"],
+  mergeNamePh:["Ej. Travesía completa","Adib. Zeharkaldi osoa"],
+  mergeCreateBtn:["Crear ruta combinada","Ibilbide konbinatua sortu"],
+  mergeDistinctAlert:["Elige dos rutas distintas.","Aukeratu bi ibilbide desberdin."],
+  mergeCreatedAlert:["Ruta combinada creada.","Ibilbide konbinatua sortu da."],
+
+  addTitle:["Añadir ruta","Ibilbidea gehitu"],
+  tabFile:["Subir archivo","Fitxategia igo"],
+  tabPaste:["Pegar contenido GPX","GPX edukia itsatsi"],
+  dropZoneText:["Toca para elegir uno o varios archivos .gpx","Sakatu .gpx fitxategi bat edo gehiago aukeratzeko"],
+  multiFileHint:["Puedes seleccionar varios GPX a la vez: se añadirá una ruta por archivo.","Hainbat GPX aldi berean hauta ditzakezu: fitxategi bakoitzeko ibilbide bat gehituko da."],
+  processingLabel:["procesando…","prozesatzen…"],
+  pasteContentLabel:["Contenido del archivo GPX","GPX fitxategiaren edukia"],
+  pastePh:["Pega aquí el XML del GPX","Itsatsi hemen GPXaren XML edukia"],
+  pasteNameLabel:["Nombre de la ruta","Ibilbidearen izena"],
+  pasteNamePh:["Ej. Pico del Lobo por la cara norte","Adib. Aizkorri iparraldetik"],
+  analyzeAddBtn:["Analizar y añadir","Aztertu eta gehitu"],
+  addFolderLabel:["Carpeta para las rutas nuevas (opcional)","Ibilbide berrientzako karpeta (aukerakoa)"],
+  pasteEmptyAlert:["Pega primero el contenido del GPX.","Itsatsi lehenbizi GPXaren edukia."],
+  gpxReadErrorPrefix:["No se ha podido leer el GPX: ","Ezin izan da GPXa irakurri: "],
+  someFailedPrefix:["Algunas rutas no se pudieron añadir:\\n","Ibilbide batzuk ezin izan dira gehitu:\\n"],
+  defaultRouteName:["Ruta sin nombre","Izenik gabeko ibilbidea"],
+
+  invalidGpxErr:["El archivo no es un GPX válido.","Fitxategia ez da baliozko GPX bat."],
+  noPointsErr:["No se han encontrado puntos de ruta (trkpt/rtept) en el GPX.","Ez da ibilbide-punturik aurkitu (trkpt/rtept) GPXean."],
+  saveFailErr:["No se ha podido guardar la ruta en este dispositivo.","Ezin izan da ibilbidea gailu honetan gorde."],
+
+  liveBtnLabel:["▶ Seguir esta ruta en vivo","▶ Ibilbide hau zuzenean jarraitu"],
+  mapLayerStandard:["Mapa: Estándar","Mapa: Estandarra"],
+  mapLayerTopo:["Mapa: Topográfico","Mapa: Topografikoa"],
+  elevProfileTitle:["Perfil de elevación","Desnibel-profila"],
+  noElevDataMsg:["Este GPX no incluye datos de elevación.","GPX honek ez du altitude daturik."],
+  distanceStatLbl:["Distancia","Distantzia"],
+  minMaxAltLbl:["Altitud mín / máx","Altitude min / max"],
+  ascentStatLbl:["Desnivel positivo","Desnibel positiboa"],
+  descentStatLbl:["Desnivel negativo","Desnibel negatiboa"],
+  maxSlopeLbl:["Pendiente máxima","Malda maximoa"],
+  avgSpeedRealLbl:["Velocidad media (real)","Batez besteko abiadura (erreala)"],
+  avgSpeedLbl:["Velocidad media","Batez besteko abiadura"],
+  noTimeDataShort:["GPX sin horas","GPXak ez du ordurik"],
+  timeSimpleLblTpl:["Tiempo · velocidad simple ({s} km/h)","Denbora · abiadura sinplea ({s} km/h)"],
+  timeNaismithLbl:["Tiempo · regla de Naismith","Denbora · Naismith araua"],
+  movingTimeLbl:["Tiempo en movimiento (real)","Mugimenduko denbora (erreala)"],
+  totalTimeRealLbl:["Tiempo total (real)","Denbora totala (erreala)"],
+  notesTitle:["Notas","Oharrak"],
+  photosTitle:["Fotos","Argazkiak"],
+  addWaypointBtn:["📍 Añadir punto","📍 Puntua gehitu"],
+  addWaypointActiveBtn:["📍 Toca el mapa para colocar el punto","📍 Sakatu mapan puntua kokatzeko"],
+  editTrackBtn:["✂ Editar trazado","✂ Traza editatu"],
+  offlineMapBtn:["🗺 Mapa offline","🗺 Mapa offline"],
+  exportGpxBtn:["⬇ Exportar GPX","⬇ GPX esportatu"],
+  shareBtn:["📤 Compartir","📤 Partekatu"],
+  closeBtn:["Cerrar","Itxi"],
+  deleteRouteConfirmMsg:["¿Eliminar esta ruta? Esta acción no se puede deshacer.","Ibilbide hau ezabatu? Ekintza hau ezin da desegin."],
+  routeLoadErrorAlert:["No se ha podido cargar la ruta.","Ezin izan da ibilbidea kargatu."],
+
+  wpNewTitle:["Nuevo punto","Puntu berria"],
+  wpNameLabel:["Nombre","Izena"],
+  wpNamePh:["Ej. Fuente del roble","Adib. Harkaitz iturria"],
+  wpTypeLabel:["Tipo","Mota"],
+  wpTypeCima:["Cima","Gailurra"],
+  wpTypeRefugio:["Refugio","Aterpea"],
+  wpTypeAgua:["Agua","Ura"],
+  wpTypeOtro:["Otro","Beste bat"],
+  wpSaveBtn:["Guardar punto","Puntua gorde"],
+
+  offlineTitle:["Mapa sin conexión","Konexiorik gabeko mapa"],
+  offlineDescAvailable:["Descarga las teselas del mapa alrededor de esta ruta para poder consultarla sin cobertura. Puede tardar unos minutos y usar datos móviles — mejor hazlo con wifi.","Deskargatu ibilbide honen inguruko mapa-zatiak konexiorik gabe kontsultatu ahal izateko. Minutu batzuk behar litzake eta datu mugikorrak erabil ditzake — hobe wifiarekin egitea."],
+  offlineDescUnavailable:["Esta función solo está disponible en la versión instalada de la app (ver \"Instalar app\" en Ajustes). Abriendo el archivo .html directamente no es posible cachear el mapa.","Funtzio hau soilik instalatutako bertsioan dago erabilgarri (\"Aplikazioa instalatu\" Ezarpenetan). .html fitxategia zuzenean irekitzean ezin da mapa cachean gorde."],
+  offlineDownloadBtn:["Descargar","Deskargatu"],
+  offlineDownloadedBtn:["Descargado ✓","Deskargatuta ✓"],
+  offlineTooBigTpl:["El área es demasiado grande ({n} teselas). Prueba con una ruta más corta.","Area handiegia da ({n} zati). Saiatu ibilbide laburrago batekin."],
+  offlineProgressTpl:["Descargando teselas… {done}/{total}","Zatiak deskargatzen… {done}/{total}"],
+  offlineDoneTpl:["Mapa descargado ({n} teselas). Ya puedes consultarlo sin conexión.","Mapa deskargatuta ({n} zati). Jada kontsulta dezakezu konexiorik gabe."],
+
+  editTitle:["Editar ruta","Ibilbidea editatu"],
+  nameLabel:["Nombre","Izena"],
+  tagInputPh:["Añadir etiqueta y pulsar Intro","Gehitu etiketa eta sakatu Sartu"],
+  statusNoneOpt:["Sin estado","Egoerarik gabe"],
+  favCheckboxLabel:["Marcar como favorita","Gogoko gisa markatu"],
+  notesLabel:["Notas","Oharrak"],
+  photosLabel:["Fotos","Argazkiak"],
+  editHint:["La edición fina del trazado (recortar, eliminar puntos) está en el botón \"Editar trazado\" dentro del detalle de la ruta.","Trazaren fine-doikuntza (moztu, puntuak ezabatu) ibilbidearen xehetasunean \"Traza editatu\" botoian dago."],
+  saveChangesBtn:["Guardar cambios","Aldaketak gorde"],
+
+  trackEditTitle:["Editar trazado","Traza editatu"],
+  pointsInfoTpl:["{n} puntos · {d} {u}","{n} puntu · {d} {u}"],
+  trimStartLbl:["Inicio","Hasiera"],
+  trimEndLbl:["Fin","Amaiera"],
+  applyTrimBtn:["Aplicar recorte","Mozketa aplikatu"],
+  deleteModeBtn:["✂ Modo eliminar puntos","✂ Puntuak ezabatzeko modua"],
+  deleteModeActiveBtn:["✂ Modo activo: toca un punto","✂ Modua aktibo: sakatu puntu bat"],
+  undoBtn:["↺ Deshacer","↺ Desegin"],
+  deleteModeHint:["Con el modo eliminar activo, toca un punto del trazado en el mapa para quitarlo. Los cambios no se guardan hasta que pulses ✓.","Ezabatzeko modua aktibo dagoenean, sakatu trazaren puntu bat mapan kentzeko. Aldaketak ez dira gordeko ✓ sakatu arte."],
+  minTwoPointsAlert:["La ruta debe tener al menos 2 puntos.","Ibilbideak gutxienez 2 puntu izan behar ditu."],
+  invalidRangeAlert:["Rango no válido.","Tartea ez da baliozkoa."],
+
+  liveTimeLbl:["Tiempo","Denbora"],
+  liveDistLbl:["Distancia recorrida","Egindako distantzia"],
+  livePaceLbl:["Ritmo actual","Uneko erritmoa"],
+  liveRemainLbl:["Resta hasta el final","Amaierarako falta dena"],
+  pauseBtn:["Pausar","Pausatu"],
+  resumeBtn:["Reanudar","Berrekin"],
+  stopSaveBtn:["Detener y guardar","Gelditu eta gorde"],
+  stoppedLbl:["Parado","Geldirik"],
+  deviationWarnTpl:["Te has desviado ~{n} m de la ruta planeada.","~{n} m desbideratu zara aurreikusitako ibilbidetik."],
+  geoNotSupportedAlert:["Este navegador no soporta geolocalización.","Nabigatzaile honek ez du geokokapena onartzen."],
+  geoErrorPrefix:["No se ha podido acceder a tu ubicación: ","Ezin izan da zure kokapenera sartu: "],
+  geoErrorSuffix:[". Comprueba los permisos de localización del navegador.",". Egiaztatu nabigatzailearen kokapen-baimenak."],
+  saveRecordedConfirmTpl:["¿Guardar el recorrido grabado como una nueva ruta? ({n} puntos registrados)","Grabatutako ibilbidea ibilbide berri gisa gorde? ({n} puntu erregistratuta)"],
+  recordedNamePromptMsg:["Nombre de la nueva ruta:","Ibilbide berriaren izena:"],
+  recordedDefaultNameTpl:["{name} · grabado {date}","{name} · grabatuta {date}"],
+
+  storageBrokenAlert:["Este navegador no permite guardar datos de forma local (almacenamiento bloqueado). Las rutas no se conservarán al cerrar la app. Prueba a abrir el archivo en Chrome sin modo incógnito.","Nabigatzaile honek ez du datuak lokalki gordetzen uzten (biltegiratzea blokeatuta). Ibilbideak ez dira gordeko aplikazioa itxitakoan. Saiatu fitxategia Chrome-n irekitzen, modu ezkutuan egon gabe."]
+};
+function t(key, vars){
+  const arr = STRINGS[key];
+  let s = arr ? (state.settings.lang==="eu" ? arr[1] : arr[0]) : key;
+  if(vars){ for(const k in vars){ s = s.split("{"+k+"}").join(vars[k]); } }
+  return s;
+}
+function statusLabel(s){ return s==="hecha" ? t("statusHecha") : (s==="pendiente" ? t("statusPendiente") : ""); }
+function dateLocale(){ return state.settings.lang==="eu" ? "eu" : "es-ES"; }
+
+/* ============================================================
+   Storage (IndexedDB) — funciona sin conexión, sin servidor
    ============================================================ */
 const DB_NAME = "cumbre-db", STORE_NAME = "kv", TILE_STORE = "tiles";
 let storageBroken = false;
@@ -315,40 +518,16 @@ async function dbDelete(key){
     });
   }catch(e){ console.error("dbDelete error", e); return false; }
 }
-async function tileGet(key){
-  try{
-    const db = await dbPromise;
-    if(!db) return null;
-    return await new Promise((resolve, reject)=>{
-      const tx = db.transaction(TILE_STORE, "readonly");
-      const r = tx.objectStore(TILE_STORE).get(key);
-      r.onsuccess = ()=> resolve(r.result || null);
-      r.onerror = ()=> reject(r.error);
-    });
-  }catch(e){ return null; }
-}
-async function tileSet(key, blob){
-  try{
-    const db = await dbPromise;
-    if(!db) return;
-    await new Promise((resolve, reject)=>{
-      const tx = db.transaction(TILE_STORE, "readwrite");
-      tx.objectStore(TILE_STORE).put(blob, key);
-      tx.oncomplete = ()=> resolve();
-      tx.onerror = ()=> reject(tx.error);
-    });
-  }catch(e){ /* ignore individual tile failures */ }
-}
 
 /* ============================================================
-   Geo / GPX utilities
+   Geo / GPX
    ============================================================ */
 function parseGPX(text){
   const doc = new DOMParser().parseFromString(text, "application/xml");
-  if(doc.querySelector("parsererror")) throw new Error("El archivo no es un GPX válido.");
+  if(doc.querySelector("parsererror")) throw new Error(t("invalidGpxErr"));
   let nodes = doc.querySelectorAll("trkpt");
   if(!nodes.length) nodes = doc.querySelectorAll("rtept");
-  if(!nodes.length) throw new Error("No se han encontrado puntos de ruta (trkpt/rtept) en el GPX.");
+  if(!nodes.length) throw new Error(t("noPointsErr"));
   const points = [];
   nodes.forEach(pt=>{
     const lat = parseFloat(pt.getAttribute("lat"));
@@ -371,7 +550,6 @@ function haversine(a,b){
   const h=Math.sin(dLat/2)**2 + Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)**2;
   return 2*R*Math.asin(Math.sqrt(h));
 }
-
 function smoothElevations(points, win){
   const eles = points.map(p=>p.ele);
   if(eles.some(e=>e===null)) return eles;
@@ -383,7 +561,6 @@ function smoothElevations(points, win){
   }
   return out;
 }
-
 function computeStats(points){
   let distanceM=0;
   for(let i=1;i<points.length;i++) distanceM += haversine(points[i-1], points[i]);
@@ -425,7 +602,6 @@ function computeStats(points){
   }
   return {distanceKm: distanceM/1000, gainM, lossM, minEle, maxEle, maxSlopePercent, hasTimes, movingTimeSec, totalTimeSec, avgSpeedMovingKmh};
 }
-
 function decimate(points, max){
   if(points.length<=max) return points;
   const step = points.length/max, out=[];
@@ -433,13 +609,10 @@ function decimate(points, max){
   out.push(points[points.length-1]);
   return out;
 }
-
 function timeSimple(distKm, speed){ return speed>0 ? distKm/speed : null; }
 function timeNaismith(distKm, gainM, speed){
   if(speed<=0) return null;
-  const base = distKm/speed;
-  const climb = (gainM||0)/600;
-  return base+climb;
+  return distKm/speed + (gainM||0)/600;
 }
 function fmtHours(h){
   if(h===null || h===undefined || isNaN(h)) return "—";
@@ -451,7 +624,6 @@ function fmtHours(h){
 }
 function fmtNum(n, d){ return (n===null||n===undefined||isNaN(n)) ? "—" : n.toFixed(d===undefined?1:d); }
 
-/* Units */
 function distU(km){ return state.settings.units==="imperial" ? km*0.621371 : km; }
 function distUnitLabel(){ return state.settings.units==="imperial" ? "mi" : "km"; }
 function distFromDisplay(v){ return state.settings.units==="imperial" ? v/0.621371 : v; }
@@ -473,16 +645,16 @@ function routeToGPXString(full){
     s+=`</trkpt>`;
     return s;
   }).join("");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Cumbre" xmlns="http://www.topografix.com/GPX/1/1">\n<trk><name>${escapeXml(full.name)}</name><trkseg>${pts}</trkseg></trk>\n</gpx>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Ibilbideak" xmlns="http://www.topografix.com/GPX/1/1">\n<trk><name>${escapeXml(full.name)}</name><trkseg>${pts}</trkseg></trk>\n</gpx>`;
 }
 
 /* ============================================================
-   App state
+   Estado
    ============================================================ */
 let state = {
   index: [],
   folders: [],
-  settings: {speedKmh: 4, method: "naismith", units: "metric", theme: "light", mapLayer: "osm"},
+  settings: {speedKmh: 4, method: "naismith", units: "metric", theme: "light", mapLayer: "osm", lang: "eu"},
   filters: {q:"", folderId:"all", tags:[], distMin:null, distMax:null, gainMin:null, gainMax:null, timeMin:null, timeMax:null, favOnly:false, status:"", sort:"date_desc"}
 };
 
@@ -491,16 +663,18 @@ const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,8);
 async function init(){
   state.index = await dbGet("index", []);
   state.folders = await dbGet("folders", []);
-  state.settings = Object.assign({speedKmh:4, method:"naismith", units:"metric", theme:"light", mapLayer:"osm"}, await dbGet("settings", {}));
+  state.settings = Object.assign({speedKmh:4, method:"naismith", units:"metric", theme:"light", mapLayer:"osm", lang:"eu"}, await dbGet("settings", {}));
   document.body.classList.toggle("dark", state.settings.theme==="dark");
+  document.documentElement.lang = state.settings.lang;
+  document.getElementById("searchInput").placeholder = t("searchPlaceholder");
   render();
   if(storageBroken){
-    alert("Este navegador no permite guardar datos de forma local (almacenamiento bloqueado). Las rutas no se conservarán al cerrar la app. Prueba a abrir el archivo en Chrome sin modo incógnito.");
+    alert(t("storageBrokenAlert"));
   }
 }
 
 /* ============================================================
-   List rendering
+   Lista
    ============================================================ */
 const routeListEl = document.getElementById("routeList");
 const folderChipRow = document.getElementById("folderChipRow");
@@ -522,8 +696,8 @@ function getFilteredSorted(){
   if(f.distMax!=null) list = list.filter(r=> r.distanceKm <= f.distMax);
   if(f.gainMin!=null) list = list.filter(r=> (r.gainM??0) >= f.gainMin);
   if(f.gainMax!=null) list = list.filter(r=> (r.gainM??0) <= f.gainMax);
-  if(f.timeMin!=null) list = list.filter(r=> { const t=timeForRoute(r); return t!=null && t>=f.timeMin; });
-  if(f.timeMax!=null) list = list.filter(r=> { const t=timeForRoute(r); return t!=null && t<=f.timeMax; });
+  if(f.timeMin!=null) list = list.filter(r=> { const tt=timeForRoute(r); return tt!=null && tt>=f.timeMin; });
+  if(f.timeMax!=null) list = list.filter(r=> { const tt=timeForRoute(r); return tt!=null && tt<=f.timeMax; });
   if(f.favOnly) list = list.filter(r=> r.favorite);
   if(f.status) list = list.filter(r=> (r.status||"")===f.status);
 
@@ -549,7 +723,7 @@ function folderName(id){
 }
 
 function renderFolderChips(){
-  const chips = [{id:"all", name:"Todas"}, ...state.folders, {id:"none", name:"Sin carpeta"}];
+  const chips = [{id:"all", name:t("folderAll")}, ...state.folders, {id:"none", name:t("folderNone")}];
   folderChipRow.innerHTML = chips.map(c=>
     `<button class="chip ${state.filters.folderId===c.id?'on':''}" data-folder="${c.id}">${escapeHtml(c.name)}</button>`
   ).join("");
@@ -573,44 +747,45 @@ async function toggleFavoriteQuick(id){
 }
 
 function renderList(){
+  document.getElementById("btnFilters").textContent = t("filtersBtn");
   const list = getFilteredSorted();
   document.getElementById("btnFilters").classList.toggle("active", isFilterActive());
   if(state.index.length===0){
     routeListEl.innerHTML = `<div class="empty-state">
-      <h2>Todavía no hay rutas</h2>
-      <p>Añade tu primer track GPX de montaña para ver el mapa, el perfil de elevación y las estadísticas de la ruta.</p>
-      <button class="btn btn-primary" style="max-width:220px;margin:0 auto;" id="emptyAddBtn">Añadir ruta</button>
+      <h2>${t("emptyTitle")}</h2>
+      <p>${t("emptyDesc")}</p>
+      <button class="btn btn-primary" style="max-width:220px;margin:0 auto;" id="emptyAddBtn">${t("emptyAddBtn")}</button>
     </div>`;
     document.getElementById("emptyAddBtn").onclick = openAddSheet;
     return;
   }
   if(list.length===0){
     routeListEl.innerHTML = `<div class="empty-state">
-      <h2>Sin resultados</h2>
-      <p>Ninguna ruta cumple los filtros actuales. Prueba a ampliarlos.</p>
-      <button class="btn btn-secondary" style="max-width:220px;margin:0 auto;" id="clearFiltersBtn">Quitar filtros</button>
+      <h2>${t("noResultsTitle")}</h2>
+      <p>${t("noResultsDesc")}</p>
+      <button class="btn btn-secondary" style="max-width:220px;margin:0 auto;" id="clearFiltersBtn">${t("clearFiltersBtn")}</button>
     </div>`;
     document.getElementById("clearFiltersBtn").onclick = ()=>{ resetFilters(); render(); };
     return;
   }
   routeListEl.innerHTML = list.map(r=>{
-    const t = timeForRoute(r);
+    const tt = timeForRoute(r);
     const fname = folderName(r.folderId);
     return `<div class="route-card" data-id="${r.id}">
       <div class="card-top-row">
         <div class="rname">${escapeHtml(r.name)}</div>
         <button class="star-btn ${r.favorite?'on':''}" data-star="${r.id}">★</button>
       </div>
-      <div class="rmeta">${new Date(r.createdAt).toLocaleDateString("es-ES",{day:"2-digit",month:"short",year:"numeric"})}</div>
+      <div class="rmeta">${new Date(r.createdAt).toLocaleDateString(dateLocale(),{day:"2-digit",month:"short",year:"numeric"})}</div>
       <div class="route-stats">
         <span>📏 <b>${fmtNum(distU(r.distanceKm),1)} ${distUnitLabel()}</b></span>
         <span>⬆ <b style="color:var(--ascent)">${r.gainM!=null? "+"+eleU(r.gainM)+" "+eleUnitLabel():"—"}</b></span>
         <span>⬇ <b style="color:var(--descent)">${r.lossM!=null? "-"+eleU(r.lossM)+" "+eleUnitLabel():"—"}</b></span>
-        <span>⏱ <b>${fmtHours(t)}</b></span>
+        <span>⏱ <b>${fmtHours(tt)}</b></span>
       </div>
       <div class="tags-line">
         ${fname? `<span class="folder-pill">${escapeHtml(fname)}</span>`:""}
-        ${r.status? `<span class="status-badge ${r.status}">${r.status==='hecha'?'Hecha':'Pendiente'}</span>`:""}
+        ${r.status? `<span class="status-badge ${r.status}">${statusLabel(r.status)}</span>`:""}
         ${(r.tags||[]).map(tg=>`<span class="tag-pill">${escapeHtml(tg)}</span>`).join("")}
       </div>
     </div>`;
@@ -631,7 +806,6 @@ function isFilterActive(){
 function resetFilters(){
   state.filters = {q:state.filters.q, folderId:"all", tags:[], distMin:null, distMax:null, gainMin:null, gainMax:null, timeMin:null, timeMax:null, favOnly:false, status:"", sort:state.filters.sort};
 }
-
 function render(){ renderFolderChips(); renderList(); }
 
 document.getElementById("searchInput").addEventListener("input", (e)=>{
@@ -639,22 +813,22 @@ document.getElementById("searchInput").addEventListener("input", (e)=>{
 });
 
 /* ============================================================
-   Filters sheet
+   Iragazkiak
    ============================================================ */
 document.getElementById("btnFilters").onclick = openFilterSheet;
 
 function allTags(){
   const set = new Set();
-  state.index.forEach(r=> (r.tags||[]).forEach(t=>set.add(t)));
+  state.index.forEach(r=> (r.tags||[]).forEach(tg=>set.add(tg)));
   return Array.from(set).sort();
 }
 
 function openFilterSheet(){
   const f = state.filters;
   const tags = allTags();
-  const folderOpts = [`<option value="all">Todas las carpetas</option>`,
+  const folderOpts = [`<option value="all">${t("allFoldersOpt")}</option>`,
     ...state.folders.map(fo=>`<option value="${fo.id}" ${f.folderId===fo.id?'selected':''}>${escapeHtml(fo.name)}</option>`),
-    `<option value="none" ${f.folderId==="none"?'selected':''}>Sin carpeta</option>`].join("");
+    `<option value="none" ${f.folderId==="none"?'selected':''}>${t("folderNone")}</option>`].join("");
 
   const dMin = f.distMin!=null? distU(f.distMin).toFixed(1) : "";
   const dMax = f.distMax!=null? distU(f.distMax).toFixed(1) : "";
@@ -662,74 +836,72 @@ function openFilterSheet(){
   const gMax = f.gainMax!=null? eleU(f.gainMax) : "";
 
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Filtros</h2><button class="close-x" data-close>×</button></div>
+    <div class="sheet-title"><h2>${t("filtersTitle")}</h2><button class="close-x" data-close>×</button></div>
 
     <div class="chip-row" style="padding:0;flex-wrap:wrap;overflow:visible;">
-      <button class="chip ${f.favOnly?'on':''}" id="fFavOnly">★ Solo favoritas</button>
+      <button class="chip ${f.favOnly?'on':''}" id="fFavOnly">${t("favOnlyChip")}</button>
     </div>
 
-    <label>Carpeta</label>
+    <label>${t("folderLabel")}</label>
     <select id="fFolder">${folderOpts}</select>
 
-    <label>Estado</label>
+    <label>${t("statusLabel")}</label>
     <select id="fStatus">
-      <option value="" ${!f.status?'selected':''}>Todos los estados</option>
-      <option value="pendiente" ${f.status==='pendiente'?'selected':''}>Pendientes</option>
-      <option value="hecha" ${f.status==='hecha'?'selected':''}>Hechas</option>
+      <option value="" ${!f.status?'selected':''}>${t("allStatusOpt")}</option>
+      <option value="pendiente" ${f.status==='pendiente'?'selected':''}>${t("pendingOpt")}</option>
+      <option value="hecha" ${f.status==='hecha'?'selected':''}>${t("doneOpt")}</option>
     </select>
 
-    <label>Etiquetas</label>
+    <label>${t("tagsLabel")}</label>
     <div class="chip-row" style="padding:0;flex-wrap:wrap;overflow:visible;">
-      ${tags.length? tags.map(t=>`<button class="chip ${f.tags.includes(t)?'on':''}" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</button>`).join("") : '<span class="hint">Todavía no hay etiquetas creadas.</span>'}
+      ${tags.length? tags.map(tg=>`<button class="chip ${f.tags.includes(tg)?'on':''}" data-tag="${escapeHtml(tg)}">${escapeHtml(tg)}</button>`).join("") : `<span class="hint">${t("noTagsHint")}</span>`}
     </div>
 
-    <label>Distancia (${distUnitLabel()})</label>
+    <label>${t("distanceLabelTpl",{u:distUnitLabel()})}</label>
     <div class="range-row">
-      <div><input type="number" id="fDistMin" placeholder="mín" value="${dMin}"></div>
-      <div><input type="number" id="fDistMax" placeholder="máx" value="${dMax}"></div>
+      <div><input type="number" id="fDistMin" placeholder="${t('minPh')}" value="${dMin}"></div>
+      <div><input type="number" id="fDistMax" placeholder="${t('maxPh')}" value="${dMax}"></div>
     </div>
 
-    <label>Desnivel positivo (${eleUnitLabel()})</label>
+    <label>${t("gainLabelTpl",{u:eleUnitLabel()})}</label>
     <div class="range-row">
-      <div><input type="number" id="fGainMin" placeholder="mín" value="${gMin}"></div>
-      <div><input type="number" id="fGainMax" placeholder="máx" value="${gMax}"></div>
+      <div><input type="number" id="fGainMin" placeholder="${t('minPh')}" value="${gMin}"></div>
+      <div><input type="number" id="fGainMax" placeholder="${t('maxPh')}" value="${gMax}"></div>
     </div>
 
-    <label>Tiempo estimado (horas) — método: ${state.settings.method==='simple'?'velocidad simple':'Naismith'}</label>
+    <label>${t("timeLabelTpl",{m: state.settings.method==='simple'?t('methodSimpleWord'):t('methodNaismithWord')})}</label>
     <div class="range-row">
-      <div><input type="number" step="0.5" id="fTimeMin" placeholder="mín" value="${f.timeMin??''}"></div>
-      <div><input type="number" step="0.5" id="fTimeMax" placeholder="máx" value="${f.timeMax??''}"></div>
+      <div><input type="number" step="0.5" id="fTimeMin" placeholder="${t('minPh')}" value="${f.timeMin??''}"></div>
+      <div><input type="number" step="0.5" id="fTimeMax" placeholder="${t('maxPh')}" value="${f.timeMax??''}"></div>
     </div>
 
-    <label>Ordenar por</label>
+    <label>${t("sortLabel")}</label>
     <div class="sort-row">
       <select id="fSort">
-        <option value="date_desc" ${f.sort==='date_desc'?'selected':''}>Más recientes primero</option>
-        <option value="date_asc" ${f.sort==='date_asc'?'selected':''}>Más antiguas primero</option>
-        <option value="name_asc" ${f.sort==='name_asc'?'selected':''}>Nombre (A-Z)</option>
-        <option value="dist_desc" ${f.sort==='dist_desc'?'selected':''}>Distancia (mayor a menor)</option>
-        <option value="dist_asc" ${f.sort==='dist_asc'?'selected':''}>Distancia (menor a mayor)</option>
-        <option value="gain_desc" ${f.sort==='gain_desc'?'selected':''}>Desnivel + (mayor a menor)</option>
-        <option value="time_asc" ${f.sort==='time_asc'?'selected':''}>Tiempo estimado (menor a mayor)</option>
+        <option value="date_desc" ${f.sort==='date_desc'?'selected':''}>${t("sortDateDesc")}</option>
+        <option value="date_asc" ${f.sort==='date_asc'?'selected':''}>${t("sortDateAsc")}</option>
+        <option value="name_asc" ${f.sort==='name_asc'?'selected':''}>${t("sortNameAsc")}</option>
+        <option value="dist_desc" ${f.sort==='dist_desc'?'selected':''}>${t("sortDistDesc")}</option>
+        <option value="dist_asc" ${f.sort==='dist_asc'?'selected':''}>${t("sortDistAsc")}</option>
+        <option value="gain_desc" ${f.sort==='gain_desc'?'selected':''}>${t("sortGainDesc")}</option>
+        <option value="time_asc" ${f.sort==='time_asc'?'selected':''}>${t("sortTimeAsc")}</option>
       </select>
     </div>
 
-    <button class="btn btn-primary" id="applyFilters">Aplicar filtros</button>
-    <button class="btn btn-secondary" id="clearFilters">Quitar todos los filtros</button>
+    <button class="btn btn-primary" id="applyFilters">${t("applyFiltersBtn")}</button>
+    <button class="btn btn-secondary" id="clearFilters">${t("clearAllFiltersBtn")}</button>
   `);
 
   let favOnly = f.favOnly;
   overlay.querySelector("#fFavOnly").onclick = (e)=>{ favOnly=!favOnly; e.target.classList.toggle("on"); };
-
   overlay.querySelectorAll("[data-tag]").forEach(b=>{
     b.onclick = ()=>{
-      const t = b.dataset.tag;
-      const i = f.tags.indexOf(t);
-      if(i>=0) f.tags.splice(i,1); else f.tags.push(t);
+      const tg = b.dataset.tag;
+      const i = f.tags.indexOf(tg);
+      if(i>=0) f.tags.splice(i,1); else f.tags.push(tg);
       b.classList.toggle("on");
     };
   });
-
   overlay.querySelector("#applyFilters").onclick = ()=>{
     f.folderId = overlay.querySelector("#fFolder").value;
     f.status = overlay.querySelector("#fStatus").value;
@@ -753,7 +925,7 @@ function openFilterSheet(){
 function numOrNull(v){ v=v.trim(); return v===""? null : parseFloat(v); }
 
 /* ============================================================
-   Generic overlay/sheet helper
+   Overlay generico
    ============================================================ */
 let currentOverlay = null;
 function openOverlay(innerHtml){
@@ -773,19 +945,19 @@ function closeOverlay(){
 }
 
 /* ============================================================
-   Folders sheet
+   Karpetak
    ============================================================ */
 document.getElementById("btnFolders").onclick = openFoldersSheet;
 
 function openFoldersSheet(){
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Carpetas</h2><button class="close-x" data-close>×</button></div>
+    <div class="sheet-title"><h2>${t("foldersTitle")}</h2><button class="close-x" data-close>×</button></div>
     <div id="folderRows">${renderFolderRows()}</div>
-    <label>Nueva carpeta</label>
+    <label>${t("newFolderLabel")}</label>
     <div class="range-row">
-      <div><input type="text" id="newFolderName" placeholder="Ej. Pirineos"></div>
+      <div><input type="text" id="newFolderName" placeholder="${t('newFolderPh')}"></div>
     </div>
-    <button class="btn btn-primary" id="addFolderBtn">Crear carpeta</button>
+    <button class="btn btn-primary" id="addFolderBtn">${t("createFolderBtn")}</button>
   `);
   bindFolderRowEvents(overlay);
   overlay.querySelector("#addFolderBtn").onclick = async ()=>{
@@ -801,14 +973,14 @@ function openFoldersSheet(){
   };
 }
 function renderFolderRows(){
-  if(!state.folders.length) return `<p class="hint">Sin carpetas todavía.</p>`;
+  if(!state.folders.length) return `<p class="hint">${t("noFoldersHint")}</p>`;
   return state.folders.map(f=>{
     const count = state.index.filter(r=>r.folderId===f.id).length;
     return `<div class="folder-row" data-fid="${f.id}">
       <span>${escapeHtml(f.name)} <span class="hint">(${count})</span></span>
       <span>
-        <button class="small-btn" data-rename="${f.id}">Renombrar</button>
-        <button class="small-btn" data-delfolder="${f.id}">Eliminar</button>
+        <button class="small-btn" data-rename="${f.id}">${t("renameBtn")}</button>
+        <button class="small-btn" data-delfolder="${f.id}">${t("deleteBtn")}</button>
       </span>
     </div>`;
   }).join("");
@@ -817,7 +989,7 @@ function bindFolderRowEvents(overlay){
   overlay.querySelectorAll("[data-rename]").forEach(b=>{
     b.onclick = async ()=>{
       const f = state.folders.find(x=>x.id===b.dataset.rename);
-      const name = prompt("Nuevo nombre de la carpeta:", f.name);
+      const name = prompt(t("renamePromptMsg"), f.name);
       if(name && name.trim()){
         f.name = name.trim();
         await dbSet("folders", state.folders);
@@ -829,7 +1001,7 @@ function bindFolderRowEvents(overlay){
   });
   overlay.querySelectorAll("[data-delfolder]").forEach(b=>{
     b.onclick = async ()=>{
-      if(!confirm('¿Eliminar esta carpeta? Las rutas pasarán a "Sin carpeta".')) return;
+      if(!confirm(t("deleteFolderConfirmMsg"))) return;
       const fid = b.dataset.delfolder;
       state.folders = state.folders.filter(x=>x.id!==fid);
       state.index.forEach(r=>{ if(r.folderId===fid) r.folderId=null; });
@@ -843,50 +1015,56 @@ function bindFolderRowEvents(overlay){
 }
 
 /* ============================================================
-   Settings sheet
+   Ezarpenak
    ============================================================ */
 document.getElementById("btnSettings").onclick = openSettingsSheet;
 function openSettingsSheet(){
   const s = state.settings;
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Ajustes</h2><button class="close-x" data-close>×</button></div>
+    <div class="sheet-title"><h2>${t("settingsTitle")}</h2><button class="close-x" data-close>×</button></div>
 
-    <div class="section-title">Preferencias</div>
-    <label>Velocidad media al caminar (km/h)</label>
+    <div class="section-title">${t("prefsSection")}</div>
+    <label>${t("languageLabel")}</label>
+    <div class="tabbar">
+      <button data-lang="eu" class="${s.lang!=='es'?'active':''}">${t("langEu")}</button>
+      <button data-lang="es" class="${s.lang==='es'?'active':''}">${t("langEs")}</button>
+    </div>
+    <label>${t("speedLabel")}</label>
     <input type="number" step="0.1" id="setSpeed" value="${s.speedKmh}">
-    <label>Método de cálculo de tiempo</label>
+    <label>${t("methodLabel")}</label>
     <div class="tabbar">
-      <button data-method="simple" class="${s.method==='simple'?'active':''}">Velocidad simple</button>
-      <button data-method="naismith" class="${s.method==='naismith'?'active':''}">Regla de Naismith</button>
+      <button data-method="simple" class="${s.method==='simple'?'active':''}">${t("methodSimpleBtn")}</button>
+      <button data-method="naismith" class="${s.method==='naismith'?'active':''}">${t("methodNaismithBtn")}</button>
     </div>
-    <label>Unidades</label>
+    <label>${t("unitsLabel")}</label>
     <div class="tabbar">
-      <button data-units="metric" class="${s.units!=='imperial'?'active':''}">km / m</button>
-      <button data-units="imperial" class="${s.units==='imperial'?'active':''}">mi / ft</button>
+      <button data-units="metric" class="${s.units!=='imperial'?'active':''}">${t("unitsMetricBtn")}</button>
+      <button data-units="imperial" class="${s.units==='imperial'?'active':''}">${t("unitsImperialBtn")}</button>
     </div>
-    <label>Tema</label>
+    <label>${t("themeLabel")}</label>
     <div class="tabbar">
-      <button data-theme="light" class="${s.theme!=='dark'?'active':''}">Claro</button>
-      <button data-theme="dark" class="${s.theme==='dark'?'active':''}">Oscuro</button>
+      <button data-theme="light" class="${s.theme!=='dark'?'active':''}">${t("themeLightBtn")}</button>
+      <button data-theme="dark" class="${s.theme==='dark'?'active':''}">${t("themeDarkBtn")}</button>
     </div>
-    <button class="btn btn-primary" id="saveSettings">Guardar preferencias</button>
+    <button class="btn btn-primary" id="saveSettings">${t("savePrefsBtn")}</button>
 
-    <div class="section-title">Copia de seguridad</div>
-    <p class="hint">Exporta todas tus rutas, carpetas y ajustes a un archivo. Guárdalo donde quieras para no perder tu trabajo si algún día borras los datos del navegador.</p>
+    <div class="section-title">${t("backupSection")}</div>
+    <p class="hint">${t("backupDesc")}</p>
     <div class="action-row">
-      <button class="btn btn-secondary" id="btnExportBackup">Exportar copia de seguridad</button>
-      <button class="btn btn-secondary" id="btnImportBackup">Importar copia de seguridad</button>
+      <button class="btn btn-secondary" id="btnExportBackup">${t("exportBackupBtn")}</button>
+      <button class="btn btn-secondary" id="btnImportBackup">${t("importBackupBtn")}</button>
     </div>
     <input type="file" accept="application/json" id="importBackupInput" style="display:none;">
 
-    <div class="section-title">Herramientas</div>
-    <button class="tools-btn" id="btnMergeTool">🔗 Unir dos rutas en una</button>
+    <div class="section-title">${t("toolsSection")}</div>
+    <button class="tools-btn" id="btnMergeTool">${t("mergeToolBtn")}</button>
   `);
 
-  let method = s.method, units = s.units, theme = s.theme;
+  let method = s.method, units = s.units, theme = s.theme, lang = s.lang;
   overlay.querySelectorAll("[data-method]").forEach(b=> b.onclick=()=>{ method=b.dataset.method; overlay.querySelectorAll("[data-method]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
   overlay.querySelectorAll("[data-units]").forEach(b=> b.onclick=()=>{ units=b.dataset.units; overlay.querySelectorAll("[data-units]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
   overlay.querySelectorAll("[data-theme]").forEach(b=> b.onclick=()=>{ theme=b.dataset.theme; overlay.querySelectorAll("[data-theme]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
+  overlay.querySelectorAll("[data-lang]").forEach(b=> b.onclick=()=>{ lang=b.dataset.lang; overlay.querySelectorAll("[data-lang]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
 
   overlay.querySelector("#saveSettings").onclick = async ()=>{
     const speed = parseFloat(overlay.querySelector("#setSpeed").value);
@@ -894,7 +1072,10 @@ function openSettingsSheet(){
     state.settings.method = method;
     state.settings.units = units;
     state.settings.theme = theme;
+    state.settings.lang = lang;
     document.body.classList.toggle("dark", theme==="dark");
+    document.documentElement.lang = lang;
+    document.getElementById("searchInput").placeholder = t("searchPlaceholder");
     await dbSet("settings", state.settings);
     closeOverlay();
     render();
@@ -912,14 +1093,14 @@ async function exportBackup(){
   const routes=[];
   for(const r of state.index){ const full = await dbGet("route:"+r.id, null); if(full) routes.push(full); }
   const payload = {version:1, exportedAt:Date.now(), folders:state.folders, settings:state.settings, routes};
-  downloadText("cumbre-backup-"+new Date().toISOString().slice(0,10)+".json", JSON.stringify(payload), "application/json");
+  downloadText("ibilbideak-backup-"+new Date().toISOString().slice(0,10)+".json", JSON.stringify(payload), "application/json");
 }
 async function importBackupFile(file){
   const text = await file.text();
   let data;
-  try{ data = JSON.parse(text); }catch(e){ alert("El archivo no es un JSON válido."); return; }
-  if(!data || !Array.isArray(data.routes)){ alert("El archivo no tiene el formato esperado de una copia de seguridad de Cumbre."); return; }
-  if(!confirm("Se añadirán "+data.routes.length+" rutas importadas a tu colección actual (no se borra nada). ¿Continuar?")) return;
+  try{ data = JSON.parse(text); }catch(e){ alert(t("invalidJsonAlert")); return; }
+  if(!data || !Array.isArray(data.routes)){ alert(t("invalidFormatAlert")); return; }
+  if(!confirm(t("confirmImportTpl",{n:data.routes.length}))) return;
   const folderIdMap = {};
   (data.folders||[]).forEach(f=>{
     const existing = state.folders.find(x=>x.name===f.name);
@@ -940,23 +1121,23 @@ async function importBackupFile(file){
   await dbSet("folders", state.folders);
   await dbSet("index", state.index);
   render();
-  alert("Importadas "+data.routes.length+" rutas.");
+  alert(t("importedAlertTpl",{n:data.routes.length}));
 }
 
 function openMergeToolSheet(){
-  if(state.index.length<2){ alert("Necesitas al menos dos rutas guardadas para poder unirlas."); return; }
+  if(state.index.length<2){ alert(t("mergeNeedTwoAlert")); return; }
   const opts = state.index.map(r=>`<option value="${r.id}">${escapeHtml(r.name)}</option>`).join("");
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Unir dos rutas</h2><button class="close-x" data-close>×</button></div>
-    <p class="hint">Se creará una ruta nueva concatenando los puntos de la ruta A seguida de la ruta B. Las rutas originales no se modifican.</p>
-    <label>Ruta A (inicio)</label><select id="mergeA">${opts}</select>
-    <label>Ruta B (continuación)</label><select id="mergeB">${opts}</select>
-    <label>Nombre de la ruta combinada</label><input type="text" id="mergeName" placeholder="Ej. Travesía completa">
-    <button class="btn btn-primary" id="mergeBtn">Crear ruta combinada</button>
+    <div class="sheet-title"><h2>${t("mergeTitle")}</h2><button class="close-x" data-close>×</button></div>
+    <p class="hint">${t("mergeDesc")}</p>
+    <label>${t("mergeALabel")}</label><select id="mergeA">${opts}</select>
+    <label>${t("mergeBLabel")}</label><select id="mergeB">${opts}</select>
+    <label>${t("mergeNameLabel")}</label><input type="text" id="mergeName" placeholder="${t('mergeNamePh')}">
+    <button class="btn btn-primary" id="mergeBtn">${t("mergeCreateBtn")}</button>
   `);
   overlay.querySelector("#mergeBtn").onclick = async ()=>{
     const idA = overlay.querySelector("#mergeA").value, idB = overlay.querySelector("#mergeB").value;
-    if(idA===idB){ alert("Elige dos rutas distintas."); return; }
+    if(idA===idB){ alert(t("mergeDistinctAlert")); return; }
     const fullA = await dbGet("route:"+idA, null), fullB = await dbGet("route:"+idB, null);
     if(!fullA || !fullB) return;
     const points = fullA.points.concat(fullB.points);
@@ -974,42 +1155,42 @@ function openMergeToolSheet(){
     await dbSet("index", state.index);
     closeOverlay();
     render();
-    alert("Ruta combinada creada.");
+    alert(t("mergeCreatedAlert"));
   };
 }
 
 /* ============================================================
-   Add route sheet
+   Ibilbidea gehitu
    ============================================================ */
 document.getElementById("fabAdd").onclick = openAddSheet;
 
 function openAddSheet(){
-  const folderOpts = [`<option value="">Sin carpeta</option>`,
+  const folderOpts = [`<option value="">${t("folderNone")}</option>`,
     ...state.folders.map(f=>`<option value="${f.id}">${escapeHtml(f.name)}</option>`)].join("");
 
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Añadir ruta</h2><button class="close-x" data-close>×</button></div>
+    <div class="sheet-title"><h2>${t("addTitle")}</h2><button class="close-x" data-close>×</button></div>
     <div class="tabbar">
-      <button data-tab="file" class="active">Subir archivo</button>
-      <button data-tab="paste">Pegar contenido GPX</button>
+      <button data-tab="file" class="active">${t("tabFile")}</button>
+      <button data-tab="paste">${t("tabPaste")}</button>
     </div>
 
     <div id="tabFile">
-      <div class="upload-drop" id="dropZone">Toca para elegir uno o varios archivos .gpx</div>
+      <div class="upload-drop" id="dropZone">${t("dropZoneText")}</div>
       <input type="file" id="gpxFileInput" accept=".gpx" multiple style="display:none">
       <div id="fileListPreview"></div>
-      <p class="hint">Puedes seleccionar varios GPX a la vez: se añadirá una ruta por archivo.</p>
+      <p class="hint">${t("multiFileHint")}</p>
     </div>
 
     <div id="tabPaste" style="display:none;">
-      <label>Contenido del archivo GPX</label>
-      <textarea id="pasteArea" placeholder="Pega aquí el XML del GPX"></textarea>
-      <label>Nombre de la ruta</label>
-      <input type="text" id="pasteName" placeholder="Ej. Pico del Lobo por la cara norte">
-      <button class="btn btn-primary" id="addPasteBtn">Analizar y añadir</button>
+      <label>${t("pasteContentLabel")}</label>
+      <textarea id="pasteArea" placeholder="${t('pastePh')}"></textarea>
+      <label>${t("pasteNameLabel")}</label>
+      <input type="text" id="pasteName" placeholder="${t('pasteNamePh')}">
+      <button class="btn btn-primary" id="addPasteBtn">${t("analyzeAddBtn")}</button>
     </div>
 
-    <label style="margin-top:18px;">Carpeta para las rutas nuevas (opcional)</label>
+    <label style="margin-top:18px;">${t("addFolderLabel")}</label>
     <select id="addFolderSelect">${folderOpts}</select>
   `);
 
@@ -1028,7 +1209,7 @@ function openAddSheet(){
     const files = Array.from(fileInput.files);
     if(!files.length) return;
     const preview = overlay.querySelector("#fileListPreview");
-    preview.innerHTML = files.map(f=>`<div class="filecard"><span>${escapeHtml(f.name)}</span><span>procesando…</span></div>`).join("");
+    preview.innerHTML = files.map(f=>`<div class="filecard"><span>${escapeHtml(f.name)}</span><span>${t('processingLabel')}</span></div>`).join("");
     const folderId = overlay.querySelector("#addFolderSelect").value || null;
     let added=0, failed=[];
     for(const file of files){
@@ -1041,19 +1222,19 @@ function openAddSheet(){
     }
     closeOverlay();
     render();
-    if(failed.length) alert("Algunas rutas no se pudieron añadir:\n"+failed.join("\n"));
+    if(failed.length) alert(t("someFailedPrefix")+failed.join("\n"));
   };
 
   overlay.querySelector("#addPasteBtn").onclick = async ()=>{
     const text = overlay.querySelector("#pasteArea").value.trim();
-    const name = overlay.querySelector("#pasteName").value.trim() || "Ruta sin nombre";
-    if(!text){ alert("Pega primero el contenido del GPX."); return; }
+    const name = overlay.querySelector("#pasteName").value.trim() || t("defaultRouteName");
+    if(!text){ alert(t("pasteEmptyAlert")); return; }
     const folderId = overlay.querySelector("#addFolderSelect").value || null;
     try{
       await addRouteFromGPX(text, name, folderId);
       closeOverlay();
       render();
-    }catch(err){ alert("No se ha podido leer el GPX: "+err.message); }
+    }catch(err){ alert(t("gpxReadErrorPrefix")+err.message); }
   };
 }
 
@@ -1062,7 +1243,7 @@ async function addRouteFromGPX(text, defaultName, folderId){
   const stats = computeStats(parsed.points);
   const storedPoints = decimate(parsed.points, 1500);
   const id = uid();
-  const name = (parsed.name && parsed.name.trim()) || defaultName || "Ruta sin nombre";
+  const name = (parsed.name && parsed.name.trim()) || defaultName || t("defaultRouteName");
   const full = {
     id, name, folderId: folderId||null, tags: [],
     points: storedPoints,
@@ -1073,7 +1254,7 @@ async function addRouteFromGPX(text, defaultName, folderId){
     createdAt: Date.now()
   };
   const ok = await dbSet("route:"+id, full);
-  if(!ok) throw new Error("No se ha podido guardar la ruta en este dispositivo.");
+  if(!ok) throw new Error(t("saveFailErr"));
   state.index.push({
     id, name, folderId: full.folderId, tags: [],
     distanceKm: stats.distanceKm, gainM: stats.gainM, lossM: stats.lossM,
@@ -1101,7 +1282,7 @@ async function saveRecordedRoute(name, rawPoints, folderId){
 }
 
 /* ============================================================
-   Map tile layers (standard / topo)
+   Mapa: capas y offline
    ============================================================ */
 function makeTileLayer(kind){
   const urlOSM = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -1110,12 +1291,9 @@ function makeTileLayer(kind){
     maxZoom: 17, attribution: kind==="topo" ? "© OpenTopoMap, © OpenStreetMap" : "© OpenStreetMap"
   });
 }
-
-/* Offline map: real caching only works once installed from https (service worker).
-   In modo file:// simplemente avisamos, no fallamos. */
 async function downloadOfflineTiles(full, statusEl){
   if(!(navigator.serviceWorker && navigator.serviceWorker.controller)){
-    if(statusEl) statusEl.textContent = "Esta función solo funciona en la versión instalada (ver Ajustes → Instalar app). Abriendo el archivo directamente no se puede cachear el mapa.";
+    if(statusEl) statusEl.textContent = t("offlineDescUnavailable");
     return;
   }
   const lats = full.points.map(p=>p.lat), lons = full.points.map(p=>p.lon);
@@ -1135,41 +1313,38 @@ async function downloadOfflineTiles(full, statusEl){
     }
   });
   if(tiles.length>900){
-    if(statusEl) statusEl.textContent = "El área es demasiado grande ("+tiles.length+" teselas). Prueba con una ruta más corta.";
+    if(statusEl) statusEl.textContent = t("offlineTooBigTpl",{n:tiles.length});
     return;
   }
   const layerKind = state.settings.mapLayer||"osm";
   const base = layerKind==="topo" ? "https://a.tile.opentopomap.org" : "https://a.tile.openstreetmap.org";
   let done=0;
-  for(const t of tiles){
-    try{ await fetch(base+"/"+t.z+"/"+t.x+"/"+t.y+".png"); }catch(e){ /* seguimos con la siguiente tesela */ }
+  for(const tl of tiles){
+    try{ await fetch(base+"/"+tl.z+"/"+tl.x+"/"+tl.y+".png"); }catch(e){ /* seguimos con la siguiente tesela */ }
     done++;
-    if(statusEl) statusEl.textContent = "Descargando teselas… "+done+"/"+tiles.length;
+    if(statusEl) statusEl.textContent = t("offlineProgressTpl",{done, total:tiles.length});
   }
-  if(statusEl) statusEl.textContent = "Mapa descargado ("+tiles.length+" teselas). Ya puedes consultarlo sin conexión.";
+  if(statusEl) statusEl.textContent = t("offlineDoneTpl",{n:tiles.length});
   full.offlineDownloaded = true;
   await dbSet("route:"+full.id, full);
 }
-
 function openOfflineDownloadSheet(full){
   const swActive = !!(navigator.serviceWorker && navigator.serviceWorker.controller);
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Mapa sin conexión</h2><button class="close-x" data-close>×</button></div>
-    <p class="hint">${swActive
-      ? 'Descarga las teselas del mapa alrededor de esta ruta para poder consultarla sin cobertura. Puede tardar unos minutos y usar datos móviles — mejor hazlo con wifi.'
-      : 'Esta función solo está disponible en la versión instalada de la app (ver "Instalar app" en Ajustes). Abriendo el archivo .html directamente no es posible cachear el mapa.'}</p>
+    <div class="sheet-title"><h2>${t("offlineTitle")}</h2><button class="close-x" data-close>×</button></div>
+    <p class="hint">${swActive ? t("offlineDescAvailable") : t("offlineDescUnavailable")}</p>
     <p id="offlineStatus" class="hint tabular"></p>
-    <button class="btn btn-primary" id="offlineStart" ${swActive?'':'disabled'}>Descargar</button>
+    <button class="btn btn-primary" id="offlineStart" ${swActive?'':'disabled'}>${t("offlineDownloadBtn")}</button>
   `);
   overlay.querySelector("#offlineStart").onclick = async (e)=>{
     e.target.disabled=true;
     await downloadOfflineTiles(full, overlay.querySelector("#offlineStatus"));
-    e.target.textContent="Descargado ✓";
+    e.target.textContent=t("offlineDownloadedBtn");
   };
 }
 
 /* ============================================================
-   Waypoints
+   Puntos de interes (waypoints)
    ============================================================ */
 function waypointIcon(type){
   const emoji = {cima:"⛰️", refugio:"🏠", agua:"💧", otro:"📍"}[type] || "📍";
@@ -1177,19 +1352,19 @@ function waypointIcon(type){
 }
 function openWaypointPrompt(latlng, full, onSaved){
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Nuevo punto</h2><button class="close-x" data-close>×</button></div>
-    <label>Nombre</label><input type="text" id="wpName" placeholder="Ej. Fuente del roble">
-    <label>Tipo</label>
+    <div class="sheet-title"><h2>${t("wpNewTitle")}</h2><button class="close-x" data-close>×</button></div>
+    <label>${t("wpNameLabel")}</label><input type="text" id="wpName" placeholder="${t('wpNamePh')}">
+    <label>${t("wpTypeLabel")}</label>
     <select id="wpType">
-      <option value="cima">Cima</option>
-      <option value="refugio">Refugio</option>
-      <option value="agua">Agua</option>
-      <option value="otro">Otro</option>
+      <option value="cima">${t("wpTypeCima")}</option>
+      <option value="refugio">${t("wpTypeRefugio")}</option>
+      <option value="agua">${t("wpTypeAgua")}</option>
+      <option value="otro">${t("wpTypeOtro")}</option>
     </select>
-    <button class="btn btn-primary" id="wpSave">Guardar punto</button>
+    <button class="btn btn-primary" id="wpSave">${t("wpSaveBtn")}</button>
   `);
   overlay.querySelector("#wpSave").onclick = async ()=>{
-    const name = overlay.querySelector("#wpName").value.trim() || "Punto sin nombre";
+    const name = overlay.querySelector("#wpName").value.trim() || t("defaultRouteName");
     const type = overlay.querySelector("#wpType").value;
     full.waypoints = full.waypoints || [];
     full.waypoints.push({id:uid(), lat:latlng.lat, lon:latlng.lng, name, type});
@@ -1207,7 +1382,7 @@ window.__cumbreDelWaypoint = async function(routeId, wpId){
 };
 
 /* ============================================================
-   Detail view
+   Ibilbidearen xehetasuna
    ============================================================ */
 let detailCtx = { map:null, marker:null, cumDist:null, points:null, routeId:null, rootEl:null, addWaypointMode:false };
 
@@ -1218,7 +1393,7 @@ function closeDetailOverlay(){
 
 async function openDetail(id){
   const full = await dbGet("route:"+id, null);
-  if(!full){ alert("No se ha podido cargar la ruta."); return; }
+  if(!full){ alert(t("routeLoadErrorAlert")); return; }
   detailCtx.routeId = id;
   detailCtx.addWaypointMode = false;
 
@@ -1245,47 +1420,47 @@ async function openDetail(id){
         </div>
         <div class="tags-line">
           ${full.folderId? `<span class="folder-pill">${escapeHtml(folderName(full.folderId)||"")}</span>`:""}
-          ${full.status? `<span class="status-badge ${full.status}">${full.status==='hecha'?'Hecha':'Pendiente'}</span>`:""}
-          ${(full.tags||[]).map(t=>`<span class="tag-pill">${escapeHtml(t)}</span>`).join("")}
+          ${full.status? `<span class="status-badge ${full.status}">${statusLabel(full.status)}</span>`:""}
+          ${(full.tags||[]).map(tg=>`<span class="tag-pill">${escapeHtml(tg)}</span>`).join("")}
         </div>
-        <button class="btn btn-primary" id="liveBtn">▶ Seguir esta ruta en vivo</button>
+        <button class="btn btn-primary" id="liveBtn">${t("liveBtnLabel")}</button>
       </div>
 
       <div class="map-wrap">
         <div id="map"></div>
-        <button class="layer-toggle" id="layerToggleBtn">Mapa</button>
+        <button class="layer-toggle" id="layerToggleBtn"></button>
       </div>
 
       <div class="elev-wrap">
-        <div class="elev-title"><span>Perfil de elevación</span><span id="elevHover" class="tabular"></span></div>
+        <div class="elev-title"><span>${t("elevProfileTitle")}</span><span id="elevHover" class="tabular"></span></div>
         <canvas id="elevCanvas"></canvas>
       </div>
 
       <div class="stat-grid">
-        <div class="stat-box"><div class="lbl">Distancia</div><div class="val tabular">${fmtNum(distU(full.distanceKm),1)} ${distUnitLabel()}</div></div>
-        <div class="stat-box"><div class="lbl">Altitud mín / máx</div><div class="val tabular">${full.minEle!=null? eleU(full.minEle)+" / "+eleU(full.maxEle)+" "+eleUnitLabel() : "—"}</div></div>
-        <div class="stat-box ascent"><div class="lbl">Desnivel positivo</div><div class="val tabular">${full.gainM!=null? "+"+eleU(full.gainM)+" "+eleUnitLabel():"—"}</div></div>
-        <div class="stat-box descent"><div class="lbl">Desnivel negativo</div><div class="val tabular">${full.lossM!=null? "-"+eleU(full.lossM)+" "+eleUnitLabel():"—"}</div></div>
-        <div class="stat-box"><div class="lbl">Pendiente máxima</div><div class="val tabular">${full.maxSlopePercent!=null? full.maxSlopePercent+"%":"—"}</div></div>
-        <div class="stat-box"><div class="lbl">${full.hasTimes? "Velocidad media (real)":"Velocidad media"}</div><div class="val tabular">${(full.hasTimes && full.avgSpeedMovingKmh!=null) ? distU(full.avgSpeedMovingKmh).toFixed(1)+" "+distUnitLabel()+"/h" : "GPX sin horas"}</div></div>
+        <div class="stat-box"><div class="lbl">${t("distanceStatLbl")}</div><div class="val tabular">${fmtNum(distU(full.distanceKm),1)} ${distUnitLabel()}</div></div>
+        <div class="stat-box"><div class="lbl">${t("minMaxAltLbl")}</div><div class="val tabular">${full.minEle!=null? eleU(full.minEle)+" / "+eleU(full.maxEle)+" "+eleUnitLabel() : "—"}</div></div>
+        <div class="stat-box ascent"><div class="lbl">${t("ascentStatLbl")}</div><div class="val tabular">${full.gainM!=null? "+"+eleU(full.gainM)+" "+eleUnitLabel():"—"}</div></div>
+        <div class="stat-box descent"><div class="lbl">${t("descentStatLbl")}</div><div class="val tabular">${full.lossM!=null? "-"+eleU(full.lossM)+" "+eleUnitLabel():"—"}</div></div>
+        <div class="stat-box"><div class="lbl">${t("maxSlopeLbl")}</div><div class="val tabular">${full.maxSlopePercent!=null? full.maxSlopePercent+"%":"—"}</div></div>
+        <div class="stat-box"><div class="lbl">${full.hasTimes? t("avgSpeedRealLbl") : t("avgSpeedLbl")}</div><div class="val tabular">${(full.hasTimes && full.avgSpeedMovingKmh!=null) ? distU(full.avgSpeedMovingKmh).toFixed(1)+" "+distUnitLabel()+"/h" : t("noTimeDataShort")}</div></div>
       </div>
       <div class="speed-row">
-        <div class="stat-box"><div class="lbl">Tiempo · velocidad simple (${state.settings.speedKmh} km/h)</div><div class="val tabular">${fmtHours(tS)}</div></div>
-        <div class="stat-box"><div class="lbl">Tiempo · regla de Naismith</div><div class="val tabular">${fmtHours(tN)}</div></div>
+        <div class="stat-box"><div class="lbl">${t("timeSimpleLblTpl",{s:state.settings.speedKmh})}</div><div class="val tabular">${fmtHours(tS)}</div></div>
+        <div class="stat-box"><div class="lbl">${t("timeNaismithLbl")}</div><div class="val tabular">${fmtHours(tN)}</div></div>
       </div>
-      ${full.hasTimes? `<div class="speed-row"><div class="stat-box"><div class="lbl">Tiempo en movimiento (real)</div><div class="val tabular">${fmtHours(full.movingTimeSec/3600)}</div></div><div class="stat-box"><div class="lbl">Tiempo total (real)</div><div class="val tabular">${fmtHours(full.totalTimeSec/3600)}</div></div></div>` : ""}
+      ${full.hasTimes? `<div class="speed-row"><div class="stat-box"><div class="lbl">${t("movingTimeLbl")}</div><div class="val tabular">${fmtHours(full.movingTimeSec/3600)}</div></div><div class="stat-box"><div class="lbl">${t("totalTimeRealLbl")}</div><div class="val tabular">${fmtHours(full.totalTimeSec/3600)}</div></div></div>` : ""}
 
-      ${full.notes? `<div class="section-title" style="padding:0 16px;margin-top:4px;">Notas</div><div class="notes-text">${escapeHtml(full.notes)}</div>`:""}
-      ${(full.photos && full.photos.length)? `<div class="section-title" style="padding:0 16px;">Fotos</div><div class="photo-grid" style="padding:0 16px;" id="photoGrid">${full.photos.map(ph=>`<img class="photo-thumb" src="${ph.dataUrl}" data-photo="${ph.dataUrl}">`).join("")}</div>`:""}
+      ${full.notes? `<div class="section-title" style="padding:0 16px;margin-top:4px;">${t("notesTitle")}</div><div class="notes-text">${escapeHtml(full.notes)}</div>`:""}
+      ${(full.photos && full.photos.length)? `<div class="section-title" style="padding:0 16px;">${t("photosTitle")}</div><div class="photo-grid" style="padding:0 16px;" id="photoGrid">${full.photos.map(ph=>`<img class="photo-thumb" src="${ph.dataUrl}" data-photo="${ph.dataUrl}">`).join("")}</div>`:""}
 
       <div class="action-row" style="padding:16px;">
-        <button class="btn btn-secondary" id="btnAddWaypoint">📍 Añadir punto</button>
-        <button class="btn btn-secondary" id="btnEditTrack">✂ Editar trazado</button>
-        <button class="btn btn-secondary" id="btnOfflineMap">🗺 Mapa offline</button>
-        <button class="btn btn-secondary" id="btnExportGpx">⬇ Exportar GPX</button>
-        <button class="btn btn-secondary" id="btnShare">📤 Compartir</button>
+        <button class="btn btn-secondary" id="btnAddWaypoint">${t("addWaypointBtn")}</button>
+        <button class="btn btn-secondary" id="btnEditTrack">${t("editTrackBtn")}</button>
+        <button class="btn btn-secondary" id="btnOfflineMap">${t("offlineMapBtn")}</button>
+        <button class="btn btn-secondary" id="btnExportGpx">${t("exportGpxBtn")}</button>
+        <button class="btn btn-secondary" id="btnShare">${t("shareBtn")}</button>
       </div>
-      <div class="detail-actions"><button class="btn btn-secondary" id="closeDetailBtn">Cerrar</button></div>
+      <div class="detail-actions"><button class="btn btn-secondary" id="closeDetailBtn">${t("closeBtn")}</button></div>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -1295,7 +1470,7 @@ async function openDetail(id){
   overlay.querySelector("#closeDetailBtn").onclick = closeFn;
   overlay.querySelector("#detailEdit").onclick = ()=> openEditSheet(full, ()=>{ closeFn(); openDetail(id); });
   overlay.querySelector("#detailDelete").onclick = async ()=>{
-    if(!confirm("¿Eliminar esta ruta? Esta acción no se puede deshacer.")) return;
+    if(!confirm(t("deleteRouteConfirmMsg"))) return;
     await dbDelete("route:"+id);
     state.index = state.index.filter(r=>r.id!==id);
     await dbSet("index", state.index);
@@ -1313,11 +1488,11 @@ async function openDetail(id){
   overlay.querySelector("#liveBtn").onclick = ()=>{ closeFn(); openLiveTracking(full); };
   overlay.querySelector("#btnEditTrack").onclick = ()=>{ closeFn(); openTrackEditSheet(full, ()=> openDetail(id)); };
   overlay.querySelector("#btnOfflineMap").onclick = ()=> openOfflineDownloadSheet(full);
-  overlay.querySelector("#btnExportGpx").onclick = ()=> downloadText((full.name||"ruta").replace(/[^a-z0-9]+/gi,"_")+".gpx", routeToGPXString(full), "application/gpx+xml");
+  overlay.querySelector("#btnExportGpx").onclick = ()=> downloadText((full.name||"ibilbidea").replace(/[^a-z0-9]+/gi,"_")+".gpx", routeToGPXString(full), "application/gpx+xml");
   overlay.querySelector("#btnShare").onclick = ()=> shareRouteSummary(full);
   overlay.querySelector("#btnAddWaypoint").onclick = (e)=>{
     detailCtx.addWaypointMode = !detailCtx.addWaypointMode;
-    e.target.textContent = detailCtx.addWaypointMode ? "📍 Toca el mapa para colocar el punto" : "📍 Añadir punto";
+    e.target.textContent = detailCtx.addWaypointMode ? t("addWaypointActiveBtn") : t("addWaypointBtn");
   };
   overlay.querySelectorAll(".photo-thumb").forEach(img=>{
     img.onclick = ()=> openPhotoViewer(img.dataset.photo);
@@ -1335,14 +1510,14 @@ function initMap(overlay, full){
   let currentTileLayer = makeTileLayer(state.settings.mapLayer||"osm");
   currentTileLayer.addTo(map);
   const layerBtn = overlay.querySelector("#layerToggleBtn");
-  layerBtn.textContent = state.settings.mapLayer==="topo" ? "Mapa: Topográfico" : "Mapa: Estándar";
+  layerBtn.textContent = state.settings.mapLayer==="topo" ? t("mapLayerTopo") : t("mapLayerStandard");
   layerBtn.onclick = ()=>{
     map.removeLayer(currentTileLayer);
     state.settings.mapLayer = state.settings.mapLayer==="topo" ? "osm" : "topo";
     dbSet("settings", state.settings);
     currentTileLayer = makeTileLayer(state.settings.mapLayer);
     currentTileLayer.addTo(map);
-    layerBtn.textContent = state.settings.mapLayer==="topo" ? "Mapa: Topográfico" : "Mapa: Estándar";
+    layerBtn.textContent = state.settings.mapLayer==="topo" ? t("mapLayerTopo") : t("mapLayerStandard");
   };
 
   const latlngs = full.points.map(p=>[p.lat, p.lon]);
@@ -1359,7 +1534,7 @@ function initMap(overlay, full){
 
   (full.waypoints||[]).forEach(wp=>{
     const m = L.marker([wp.lat, wp.lon], {icon: waypointIcon(wp.type)}).addTo(map);
-    m.bindPopup(`<b>${escapeHtml(wp.name)}</b><br>${escapeHtml(wp.type)}<br><button onclick="window.__cumbreDelWaypoint('${full.id}','${wp.id}')">Eliminar</button>`);
+    m.bindPopup(`<b>${escapeHtml(wp.name)}</b><br>${escapeHtml(wp.type)}<br><button onclick="window.__cumbreDelWaypoint('${full.id}','${wp.id}')">${t("deleteBtn")}</button>`);
   });
 
   map.on("click", (e)=>{
@@ -1389,7 +1564,7 @@ function initElevationChart(overlay, full){
     const ctx = canvas.getContext("2d");
     ctx.setTransform(dpr,0,0,dpr,0,0);
     ctx.fillStyle = "#6B776E"; ctx.font = "13px sans-serif";
-    ctx.fillText("Este GPX no incluye datos de elevación.", 12, 70);
+    ctx.fillText(t("noElevDataMsg"), 12, 70);
     return;
   }
 
@@ -1468,7 +1643,7 @@ function initElevationChart(overlay, full){
 }
 
 /* ============================================================
-   Edit route sheet (nombre, carpeta, etiquetas, estado, favorita, notas, fotos)
+   Editatu (izena, karpeta, etiketak, egoera, gogokoa, oharrak, argazkiak)
    ============================================================ */
 function fileToCompressedDataURL(file){
   return new Promise((resolve, reject)=>{
@@ -1493,49 +1668,49 @@ function fileToCompressedDataURL(file){
 }
 
 function openEditSheet(full, onSaved){
-  const folderOpts = [`<option value="">Sin carpeta</option>`,
+  const folderOpts = [`<option value="">${t("folderNone")}</option>`,
     ...state.folders.map(f=>`<option value="${f.id}" ${full.folderId===f.id?'selected':''}>${escapeHtml(f.name)}</option>`)].join("");
   let tags = (full.tags||[]).slice();
   let photos = (full.photos||[]).slice();
 
   const overlay = openOverlay(`
-    <div class="sheet-title"><h2>Editar ruta</h2><button class="close-x" data-close>×</button></div>
-    <label>Nombre</label>
+    <div class="sheet-title"><h2>${t("editTitle")}</h2><button class="close-x" data-close>×</button></div>
+    <label>${t("nameLabel")}</label>
     <input type="text" id="editName" value="${escapeHtml(full.name)}">
-    <label>Carpeta</label>
+    <label>${t("folderLabel")}</label>
     <select id="editFolder">${folderOpts}</select>
-    <label>Etiquetas</label>
+    <label>${t("tagsLabel")}</label>
     <div class="tag-input-wrap" id="tagWrap">
-      <input type="text" id="tagInput" placeholder="Añadir etiqueta y pulsar Intro">
+      <input type="text" id="tagInput" placeholder="${t('tagInputPh')}">
     </div>
-    <label>Estado</label>
+    <label>${t("statusLabel")}</label>
     <select id="editStatus">
-      <option value="" ${!full.status?'selected':''}>Sin estado</option>
-      <option value="pendiente" ${full.status==='pendiente'?'selected':''}>Pendiente</option>
-      <option value="hecha" ${full.status==='hecha'?'selected':''}>Hecha</option>
+      <option value="" ${!full.status?'selected':''}>${t("statusNoneOpt")}</option>
+      <option value="pendiente" ${full.status==='pendiente'?'selected':''}>${t("statusPendiente")}</option>
+      <option value="hecha" ${full.status==='hecha'?'selected':''}>${t("statusHecha")}</option>
     </select>
-    <div class="checkbox-row"><input type="checkbox" id="editFav" ${full.favorite?'checked':''}> <span>Marcar como favorita</span></div>
-    <label>Notas</label>
+    <div class="checkbox-row"><input type="checkbox" id="editFav" ${full.favorite?'checked':''}> <span>${t("favCheckboxLabel")}</span></div>
+    <label>${t("notesLabel")}</label>
     <textarea class="notes-input" id="editNotes">${escapeHtml(full.notes||"")}</textarea>
-    <label>Fotos</label>
+    <label>${t("photosLabel")}</label>
     <div class="photo-grid" id="editPhotoGrid"></div>
     <input type="file" accept="image/*" multiple id="editPhotoInput">
-    <p class="hint">La edición fina del trazado (recortar, eliminar puntos) está en el botón "Editar trazado" dentro del detalle de la ruta.</p>
-    <button class="btn btn-primary" id="saveEdit">Guardar cambios</button>
+    <p class="hint">${t("editHint")}</p>
+    <button class="btn btn-primary" id="saveEdit">${t("saveChangesBtn")}</button>
   `);
 
   function refreshTagWrap(){
     const wrap = overlay.querySelector("#tagWrap");
     const input = wrap.querySelector("#tagInput");
     wrap.querySelectorAll(".tag-editable").forEach(x=>x.remove());
-    tags.forEach(t=>{
+    tags.forEach(tg=>{
       const span = document.createElement("span");
       span.className = "tag-editable";
-      span.innerHTML = `${escapeHtml(t)} <span data-remove="${escapeHtml(t)}">×</span>`;
+      span.innerHTML = `${escapeHtml(tg)} <span data-remove="${escapeHtml(tg)}">×</span>`;
       wrap.insertBefore(span, input);
     });
     wrap.querySelectorAll("[data-remove]").forEach(b=>{
-      b.onclick = ()=>{ tags = tags.filter(t=>t!==b.dataset.remove); refreshTagWrap(); };
+      b.onclick = ()=>{ tags = tags.filter(tg=>tg!==b.dataset.remove); refreshTagWrap(); };
     });
   }
   refreshTagWrap();
@@ -1580,9 +1755,6 @@ function openEditSheet(full, onSaved){
   };
 }
 
-/* ============================================================
-   Photo viewer
-   ============================================================ */
 function openPhotoViewer(dataUrl){
   const v = document.createElement("div");
   v.className = "photo-viewer";
@@ -1592,7 +1764,7 @@ function openPhotoViewer(dataUrl){
 }
 
 /* ============================================================
-   Track editing: recorte de inicio/fin + eliminar puntos
+   Traza editatu: mozketa + puntuak ezabatu
    ============================================================ */
 function openTrackEditSheet(full, onSaved){
   let workingPoints = full.points.map(p=>Object.assign({}, p));
@@ -1604,21 +1776,21 @@ function openTrackEditSheet(full, onSaved){
   overlay.innerHTML = `
     <div class="detail-top">
       <button class="icon-btn" id="teCancel">←</button>
-      <span style="font-weight:600;">Editar trazado</span>
+      <span style="font-weight:600;">${t("trackEditTitle")}</span>
       <button class="icon-btn" id="teSave">✓</button>
     </div>
     <div class="detail-body">
       <div id="teMap" style="height:300px;"></div>
       <div class="edit-toolbar">
         <p class="hint" id="teInfo"></p>
-        <div class="row"><span class="lbl-sm">Inicio</span><input type="range" id="teStart" min="0" max="95" value="0"></div>
-        <div class="row"><span class="lbl-sm">Fin</span><input type="range" id="teEnd" min="5" max="100" value="100"></div>
-        <div class="row"><button class="chip" id="teApplyTrim">Aplicar recorte</button></div>
+        <div class="row"><span class="lbl-sm">${t("trimStartLbl")}</span><input type="range" id="teStart" min="0" max="95" value="0"></div>
+        <div class="row"><span class="lbl-sm">${t("trimEndLbl")}</span><input type="range" id="teEnd" min="5" max="100" value="100"></div>
+        <div class="row"><button class="chip" id="teApplyTrim">${t("applyTrimBtn")}</button></div>
         <div class="row">
-          <button class="chip" id="teDeleteMode">✂ Modo eliminar puntos</button>
-          <button class="chip" id="teUndo">↺ Deshacer</button>
+          <button class="chip" id="teDeleteMode">${t("deleteModeBtn")}</button>
+          <button class="chip" id="teUndo">${t("undoBtn")}</button>
         </div>
-        <p class="hint">Con el modo eliminar activo, toca un punto del trazado en el mapa para quitarlo. Los cambios no se guardan hasta que pulses ✓.</p>
+        <p class="hint">${t("deleteModeHint")}</p>
       </div>
     </div>
   `;
@@ -1633,7 +1805,7 @@ function openTrackEditSheet(full, onSaved){
     poly = L.polyline(latlngs, {color:"#BF5B22", weight:4}).addTo(map);
     if(latlngs.length) map.fitBounds(poly.getBounds(), {padding:[20,20]});
     const st = computeStats(workingPoints);
-    overlay.querySelector("#teInfo").textContent = workingPoints.length+" puntos · "+fmtNum(distU(st.distanceKm),1)+" "+distUnitLabel();
+    overlay.querySelector("#teInfo").textContent = t("pointsInfoTpl",{n:workingPoints.length, d:fmtNum(distU(st.distanceKm),1), u:distUnitLabel()});
   }
   redraw();
 
@@ -1657,7 +1829,7 @@ function openTrackEditSheet(full, onSaved){
   delBtn.onclick = ()=>{
     deleteMode = !deleteMode;
     delBtn.classList.toggle("on", deleteMode);
-    delBtn.textContent = deleteMode ? "✂ Modo activo: toca un punto" : "✂ Modo eliminar puntos";
+    delBtn.textContent = deleteMode ? t("deleteModeActiveBtn") : t("deleteModeBtn");
   };
   overlay.querySelector("#teUndo").onclick = ()=>{
     if(undoStack.length){ workingPoints = undoStack.pop(); redraw(); }
@@ -1669,7 +1841,7 @@ function openTrackEditSheet(full, onSaved){
     const n = workingPoints.length;
     let si = Math.floor(n*startPct/100);
     let ei = Math.ceil(n*endPct/100)-1;
-    if(ei<=si || si<0 || ei>=n){ alert("Rango no válido."); undoStack.pop(); return; }
+    if(ei<=si || si<0 || ei>=n){ alert(t("invalidRangeAlert")); undoStack.pop(); return; }
     workingPoints = workingPoints.slice(si, ei+1);
     redraw();
   };
@@ -1677,7 +1849,7 @@ function openTrackEditSheet(full, onSaved){
   const closeNoSave = ()=>{ map.remove(); overlay.remove(); };
   overlay.querySelector("#teCancel").onclick = closeNoSave;
   overlay.querySelector("#teSave").onclick = async ()=>{
-    if(workingPoints.length<2){ alert("La ruta debe tener al menos 2 puntos."); return; }
+    if(workingPoints.length<2){ alert(t("minTwoPointsAlert")); return; }
     const stats = computeStats(workingPoints);
     full.points = decimate(workingPoints, 1500);
     full.distanceKm=stats.distanceKm; full.gainM=stats.gainM; full.lossM=stats.lossM;
@@ -1694,7 +1866,7 @@ function openTrackEditSheet(full, onSaved){
 }
 
 /* ============================================================
-   Compartir resumen (imagen)
+   Partekatu (laburpen-irudia)
    ============================================================ */
 function shareRouteSummary(full){
   const canvas = document.createElement("canvas");
@@ -1708,14 +1880,14 @@ function shareRouteSummary(full){
   wrapText(ctx, full.name, 40, 80, 720, 46);
   ctx.font = "16px sans-serif";
   ctx.fillStyle = dark ? "#8E978B" : "#6B776E";
-  ctx.fillText("Cumbre · rutas de montaña", 40, 130);
+  ctx.fillText("Ibilbideak", 40, 130);
 
   const tN = timeNaismith(full.distanceKm, full.gainM, state.settings.speedKmh);
   const stats = [
-    ["Distancia", fmtNum(distU(full.distanceKm),1)+" "+distUnitLabel()],
-    ["Desnivel +", full.gainM!=null? "+"+eleU(full.gainM)+" "+eleUnitLabel() : "—"],
-    ["Desnivel -", full.lossM!=null? "-"+eleU(full.lossM)+" "+eleUnitLabel() : "—"],
-    ["Tiempo estimado", fmtHours(tN)]
+    [t("distanceStatLbl"), fmtNum(distU(full.distanceKm),1)+" "+distUnitLabel()],
+    [t("ascentStatLbl"), full.gainM!=null? "+"+eleU(full.gainM)+" "+eleUnitLabel() : "—"],
+    [t("descentStatLbl"), full.lossM!=null? "-"+eleU(full.lossM)+" "+eleUnitLabel() : "—"],
+    [t("timeNaismithLbl"), fmtHours(tN)]
   ];
   let sy=190;
   stats.forEach(([lbl,val])=>{
@@ -1743,9 +1915,9 @@ function shareRouteSummary(full){
 
   canvas.toBlob(async blob=>{
     if(!blob) return;
-    const file = new File([blob], (full.name||"ruta").replace(/[^a-z0-9]+/gi,"_")+".png", {type:"image/png"});
+    const file = new File([blob], (full.name||"ibilbidea").replace(/[^a-z0-9]+/gi,"_")+".png", {type:"image/png"});
     if(navigator.canShare && navigator.canShare({files:[file]})){
-      try{ await navigator.share({files:[file], title: full.name}); return; }catch(e){ /* usuario canceló o no soportado, seguimos con descarga */ }
+      try{ await navigator.share({files:[file], title: full.name}); return; }catch(e){ /* utzita edo ez onartua */ }
     }
     const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=file.name; a.click();
   }, "image/png");
@@ -1763,12 +1935,12 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight){
 }
 
 /* ============================================================
-   Seguimiento en vivo (GPS)
+   Zuzeneko jarraipena (GPS)
    ============================================================ */
 let liveState = null;
 
 function openLiveTracking(full){
-  if(!navigator.geolocation){ alert("Este navegador no soporta geolocalización."); return; }
+  if(!navigator.geolocation){ alert(t("geoNotSupportedAlert")); return; }
 
   const overlay = document.createElement("div");
   overlay.className = "detail";
@@ -1781,14 +1953,14 @@ function openLiveTracking(full){
     <div id="liveMap"></div>
     <div id="liveDeviation"></div>
     <div class="live-stats">
-      <div class="live-stat"><div class="lbl">Tiempo</div><div class="val tabular" id="lvTime">00:00:00</div></div>
-      <div class="live-stat"><div class="lbl">Distancia recorrida</div><div class="val tabular" id="lvDist">0.0 ${distUnitLabel()}</div></div>
-      <div class="live-stat"><div class="lbl">Ritmo actual</div><div class="val tabular" id="lvPace">—</div></div>
-      <div class="live-stat"><div class="lbl">Resta hasta el final</div><div class="val tabular" id="lvRemain">—</div></div>
+      <div class="live-stat"><div class="lbl">${t("liveTimeLbl")}</div><div class="val tabular" id="lvTime">00:00:00</div></div>
+      <div class="live-stat"><div class="lbl">${t("liveDistLbl")}</div><div class="val tabular" id="lvDist">0.0 ${distUnitLabel()}</div></div>
+      <div class="live-stat"><div class="lbl">${t("livePaceLbl")}</div><div class="val tabular" id="lvPace">—</div></div>
+      <div class="live-stat"><div class="lbl">${t("liveRemainLbl")}</div><div class="val tabular" id="lvRemain">—</div></div>
     </div>
     <div class="live-actions">
-      <button class="btn btn-secondary" id="lvPause">Pausar</button>
-      <button class="btn btn-primary" id="lvStop">Detener y guardar</button>
+      <button class="btn btn-secondary" id="lvPause">${t("pauseBtn")}</button>
+      <button class="btn btn-primary" id="lvStop">${t("stopSaveBtn")}</button>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -1814,8 +1986,8 @@ function openLiveTracking(full){
 
   overlay.querySelector("#liveClose").onclick = ()=> confirmStopLive(false);
   overlay.querySelector("#lvPause").onclick = (e)=>{
-    if(!liveState.paused){ liveState.paused=true; liveState.pausedAt=Date.now(); e.target.textContent="Reanudar"; }
-    else { liveState.paused=false; liveState.pausedAccum += Date.now()-liveState.pausedAt; e.target.textContent="Pausar"; }
+    if(!liveState.paused){ liveState.paused=true; liveState.pausedAt=Date.now(); e.target.textContent=t("resumeBtn"); }
+    else { liveState.paused=false; liveState.pausedAccum += Date.now()-liveState.pausedAt; e.target.textContent=t("pauseBtn"); }
   };
   overlay.querySelector("#lvStop").onclick = ()=> confirmStopLive(true);
 
@@ -1860,7 +2032,7 @@ function openLiveTracking(full){
       const dKm = haversine(recent[0], recent[recent.length-1])/1000;
       const dT = (recent[recent.length-1].time-recent[0].time)/1000/3600;
       const speed = dT>0 ? dKm/dT : 0;
-      const paceEl = overlay.querySelector("#lvPace"); if(paceEl) paceEl.textContent = speed>0.1 ? distU(speed).toFixed(1)+" "+distUnitLabel()+"/h" : "Parado";
+      const paceEl = overlay.querySelector("#lvPace"); if(paceEl) paceEl.textContent = speed>0.1 ? distU(speed).toFixed(1)+" "+distUnitLabel()+"/h" : t("stoppedLbl");
     }
 
     if(full.points.length){
@@ -1869,10 +2041,10 @@ function openLiveTracking(full){
       const remainKm = Math.max(0, totalPlannedKm - cumDistPlanned[bestI]);
       const remainEl = overlay.querySelector("#lvRemain"); if(remainEl) remainEl.textContent = distU(remainKm).toFixed(1)+" "+distUnitLabel();
       const devEl = overlay.querySelector("#liveDeviation");
-      if(devEl) devEl.innerHTML = bestD>120 ? `<div class="deviation-warn">Te has desviado ~${Math.round(bestD)} m de la ruta planeada.</div>` : "";
+      if(devEl) devEl.innerHTML = bestD>120 ? `<div class="deviation-warn">${t("deviationWarnTpl",{n:Math.round(bestD)})}</div>` : "";
     }
   }, err=>{
-    alert("No se ha podido acceder a tu ubicación: "+err.message+". Comprueba los permisos de localización del navegador.");
+    alert(t("geoErrorPrefix")+err.message+t("geoErrorSuffix"));
   }, {enableHighAccuracy:true, maximumAge:2000, timeout:20000});
 
   function confirmStopLive(offerSave){
@@ -1883,10 +2055,10 @@ function openLiveTracking(full){
     map.remove(); overlay.remove();
     liveState = null;
     if(offerSave && pts.length>1){
-      const save = confirm("¿Guardar el recorrido grabado como una nueva ruta? ("+pts.length+" puntos registrados)");
+      const save = confirm(t("saveRecordedConfirmTpl",{n:pts.length}));
       if(save){
-        const defaultName = full.name+" · grabado "+new Date().toLocaleDateString("es-ES");
-        const name = prompt("Nombre de la nueva ruta:", defaultName) || defaultName;
+        const defaultName = t("recordedDefaultNameTpl",{name:full.name, date:new Date().toLocaleDateString(dateLocale())});
+        const name = prompt(t("recordedNamePromptMsg"), defaultName) || defaultName;
         saveRecordedRoute(name, pts, full.folderId);
       }
     }
