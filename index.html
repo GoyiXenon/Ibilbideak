@@ -610,7 +610,13 @@ const STRINGS = {
   ideasLocating:["Buscando tu ubicación…","Zure kokapena bilatzen…"],
   ideasNoPeaks:["No se han encontrado picos cerca, o no se ha podido consultar OpenStreetMap ahora mismo.","Ez da gailurrik aurkitu inguruan, edo ezin izan da OpenStreetMap orain kontsultatu."],
   yourAvgTpl:["Tus rutas suelen tener de media {km} y {gain} de desnivel.","Zure ibilbideek batez beste {km} eta {gain} desnibel izan ohi dute."],
-  ideasAiNote:["Datos de picos: OpenStreetMap. Combínalo con Wikiloc para planear la ruta exacta hasta la cima.","Gailurren datuak: OpenStreetMap. Erabili Wikiloc-ekin batera gailurrerako ibilbide zehatza planifikatzeko."]
+  ideasAiNote:["Datos de picos: OpenStreetMap. Combínalo con Wikiloc para planear la ruta exacta hasta la cima.","Gailurren datuak: OpenStreetMap. Erabili Wikiloc-ekin batera gailurrerako ibilbide zehatza planifikatzeko."],
+  ideasEleMinLabelTpl:["Altitud mínima ({u})","Altitude minimoa ({u})"],
+  ideasEleMaxLabelTpl:["Altitud máxima ({u})","Altitude maximoa ({u})"],
+  ideasDistMaxLabelTpl:["Distancia máxima ({u})","Distantzia maximoa ({u})"],
+  ideasFiltersTitle:["Filtros","Iragazkiak"],
+  ideasNoMatch:["Ningún pico cumple estos filtros. Prueba a ampliarlos.","Gailur bat ere ez dator bat iragazki hauekin. Zabaldu itzazu."],
+  ideasResultsCountTpl:["{n} picos encontrados","{n} gailur aurkitu dira"]
 };
 function t(key, vars){
   const arr = STRINGS[key];
@@ -2748,7 +2754,7 @@ function openDaySheet(dateStr){
 /* ============================================================
    Ideiak: inguruko gailurrak (OpenStreetMap)
    ============================================================ */
-let ideasState = { built:false, map:null, markers:[] };
+let ideasState = { built:false, map:null, markers:[], allPeaks:[], ref:null };
 function renderIdeasPage(){
   const root = document.getElementById("pageIdeas");
   if(ideasState.built) return;
@@ -2761,9 +2767,21 @@ function renderIdeasPage(){
       <p id="ideasStatus" class="hint tabular"></p>
     </div>
     <div id="ideasMap"></div>
+    <div id="ideasFilters" style="padding:14px 16px 0;display:none;">
+      <div class="section-title" style="margin:0 0 8px;">${t("ideasFiltersTitle")}</div>
+      <div class="range-row">
+        <div><label>${t("ideasEleMinLabelTpl",{u:eleUnitLabel()})}</label><input type="number" id="ideaEleMin" placeholder="${t('minPh')}"></div>
+        <div><label>${t("ideasEleMaxLabelTpl",{u:eleUnitLabel()})}</label><input type="number" id="ideaEleMax" placeholder="${t('maxPh')}"></div>
+      </div>
+      <label>${t("ideasDistMaxLabelTpl",{u:distUnitLabel()})}</label>
+      <input type="number" id="ideaDistMax" placeholder="${t('maxPh')}">
+    </div>
     <div id="ideasList" style="padding:14px 16px 100px;"></div>
   `;
   root.querySelector("#findNearbyBtn").onclick = loadIdeas;
+  ["ideaEleMin","ideaEleMax","ideaDistMax"].forEach(id=>{
+    root.querySelector("#"+id).addEventListener("input", applyIdeasFilters);
+  });
 }
 async function loadIdeas(){
   const statusEl = document.getElementById("ideasStatus");
@@ -2783,12 +2801,30 @@ async function loadIdeas(){
       dist: haversine(ref, {lat:p.lat,lon:p.lon})/1000
     }));
     peaks.sort((a,b)=>a.dist-b.dist);
-    peaks = peaks.slice(0,25);
+    ideasState.ref = ref;
+    ideasState.allPeaks = peaks;
     statusEl.textContent = "";
-    renderIdeasResults(ref, peaks);
+    document.getElementById("ideasFilters").style.display = peaks.length? "block" : "none";
+    applyIdeasFilters();
   }catch(e){
     statusEl.textContent = t("ideasNoPeaks");
   }
+}
+function applyIdeasFilters(){
+  if(!ideasState.ref) return;
+  const eleMinV = numOrNull(document.getElementById("ideaEleMin").value);
+  const eleMaxV = numOrNull(document.getElementById("ideaEleMax").value);
+  const distMaxV = numOrNull(document.getElementById("ideaDistMax").value);
+  const eleMin = eleMinV!=null? eleFromDisplay(eleMinV) : null;
+  const eleMax = eleMaxV!=null? eleFromDisplay(eleMaxV) : null;
+  const distMax = distMaxV!=null? distFromDisplay(distMaxV) : null;
+  let filtered = ideasState.allPeaks.filter(p=>{
+    if(eleMin!=null && (p.ele==null || p.ele<eleMin)) return false;
+    if(eleMax!=null && (p.ele==null || p.ele>eleMax)) return false;
+    if(distMax!=null && p.dist>distMax) return false;
+    return true;
+  }).slice(0,40);
+  renderIdeasResults(ideasState.ref, filtered);
 }
 function renderIdeasResults(ref, peaks){
   if(!ideasState.map){
@@ -2815,6 +2851,9 @@ function renderIdeasResults(ref, peaks){
   if(avgKm!=null){
     html += `<div class="avg-hint">${t("yourAvgTpl",{km:fmtNum(distU(avgKm),1)+" "+distUnitLabel(), gain:eleU(avgGain)+" "+eleUnitLabel()})}</div>`;
   }
+  if(ideasState.allPeaks.length){
+    html += `<p class="hint">${t("ideasResultsCountTpl",{n:peaks.length})}</p>`;
+  }
   if(peaks.length){
     html += peaks.map(p=>`<div class="route-card" style="cursor:default;margin-bottom:8px;">
       <div class="rname">${escapeHtml(p.name)}</div>
@@ -2824,7 +2863,7 @@ function renderIdeasResults(ref, peaks){
       </div>
     </div>`).join("");
   } else {
-    html += `<p class="hint">${t("ideasNoPeaks")}</p>`;
+    html += `<p class="hint">${ideasState.allPeaks.length? t("ideasNoMatch") : t("ideasNoPeaks")}</p>`;
   }
   html += `<p class="hint" style="margin-top:14px;">${t("ideasAiNote")}</p>`;
   list.innerHTML = html;
