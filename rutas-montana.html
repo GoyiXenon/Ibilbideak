@@ -145,7 +145,7 @@ body.dark .status-badge.hecha{background:#1e3327;color:#bfe3cd;}
 .empty-state p{font-size:14px;line-height:1.5;margin:0 0 18px;}
 
 .fab{
-  position:fixed;bottom:24px;right:calc(50% - 320px + 24px);z-index:30;
+  position:fixed;bottom:calc(78px + env(safe-area-inset-bottom));right:calc(50% - 320px + 24px);z-index:30;
   width:56px;height:56px;border-radius:50%;background:var(--ascent);color:#fff;border:none;
   font-size:28px;box-shadow:0 4px 14px rgba(0,0,0,0.28);cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
@@ -244,6 +244,64 @@ textarea.notes-input{font-family:inherit;font-size:14px;min-height:70px;}
 .live-actions button{flex:1;}
 .deviation-warn{margin:0 16px 6px;padding:8px 12px;background:#f4d9c4;color:#7a3d15;border-radius:var(--radius);font-size:13px;}
 body.dark .deviation-warn{background:#3a2716;color:#f0b98a;}
+
+/* Bottom nav */
+.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:640px;display:flex;background:var(--ink);border-top:1px solid rgba(255,255,255,0.08);z-index:25;padding-bottom:env(safe-area-inset-bottom);}
+body.dark .bottomnav{background:#0D110C;}
+body.amoled .bottomnav{background:#000000;border-top:1px solid #1A1A1A;}
+.nav-btn{flex:1;background:none;border:none;color:rgba(246,243,233,0.5);display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 6px;font-size:11px;cursor:pointer;}
+.nav-btn.active{color:var(--topbar-fg);}
+.nav-icon{font-size:19px;}
+#pageHome .list{padding-bottom:110px;}
+#pageIdeas,#pageData{min-height:60vh;padding-bottom:90px;}
+
+/* Difficulty badge */
+.diff-badge{font-size:11px;padding:2px 8px;border-radius:10px;}
+.diff-badge.erraza{background:#d7e6da;color:#2f6b46;}
+.diff-badge.ertaina{background:#e8dfc4;color:#7a6a2c;}
+.diff-badge.zaila{background:#f0d4d0;color:#8a3a2c;}
+body.dark .diff-badge.erraza,body.amoled .diff-badge.erraza{background:#1e3327;color:#bfe3cd;}
+body.dark .diff-badge.ertaina,body.amoled .diff-badge.ertaina{background:#3a3420;color:#e8dfc4;}
+body.dark .diff-badge.zaila,body.amoled .diff-badge.zaila{background:#3a241e;color:#f0c2b8;}
+
+/* Terrain bar */
+.terrain-bar{display:flex;height:14px;border-radius:7px;overflow:hidden;border:1px solid var(--line);}
+.terrain-seg.errepidea{background:#8A8F98;}
+.terrain-seg.pista{background:#C98A3A;}
+.terrain-seg.mendia{background:#5C8C6B;}
+.terrain-legend{display:flex;gap:14px;margin-top:8px;font-size:12px;color:var(--slate);flex-wrap:wrap;}
+.terrain-legend span{display:flex;align-items:center;gap:5px;}
+.terrain-legend .sw{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+/* Data page: summary + calendar */
+.subtabbar{display:flex;gap:6px;padding:14px 16px 8px;}
+.subtabbar button{flex:1;padding:9px;border:1px solid var(--slate);background:transparent;border-radius:var(--radius);color:var(--slate);cursor:pointer;font-size:13px;}
+.subtabbar button.active{background:var(--slate);color:var(--paper-2);}
+.points-banner{display:flex;gap:12px;padding:6px 16px 16px;}
+.points-banner>div{flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px;text-align:center;}
+.points-banner .lbl{font-size:11px;color:var(--slate-soft);}
+.points-banner .big{font-size:28px;font-weight:700;font-family:Georgia,serif;color:var(--ascent);}
+.data-inner{padding:0 16px;}
+.period-row{padding:10px 0;border-bottom:1px solid var(--line);}
+.period-label{font-size:13px;font-weight:600;margin-bottom:4px;text-transform:capitalize;}
+.period-stats{display:flex;gap:12px;font-size:12px;color:var(--slate);margin-bottom:6px;}
+.cal-header{display:flex;align-items:center;justify-content:space-between;padding:4px 16px 12px;}
+.cal-header b{text-transform:capitalize;}
+.cal-nav-btn{background:var(--paper-2);border:1px solid var(--line);color:var(--ink);width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:0 16px;}
+.cal-dow-cell{text-align:center;font-size:11px;color:var(--slate-soft);padding:4px 0;}
+.cal-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--paper-2);border:1px solid var(--line);border-radius:4px;cursor:pointer;gap:3px;}
+.cal-cell.empty{background:transparent;border:none;cursor:default;}
+.cal-cell.today{border-color:var(--ascent);border-width:2px;}
+.cal-daynum{font-size:12px;}
+.cal-dots{display:flex;gap:2px;height:6px;}
+.dot{width:5px;height:5px;border-radius:50%;}
+.dot.done{background:var(--ascent);}
+.dot.planned{background:transparent;border:1px solid var(--descent);}
+
+/* Ideas page */
+#ideasMap{height:260px;width:100%;background:var(--paper);}
+.avg-hint{margin:0 16px 10px;padding:10px 12px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);font-size:13px;color:var(--slate);}
 </style>
 </head>
 <body>
@@ -259,16 +317,26 @@ body.dark .deviation-warn{background:#3a2716;color:#f0b98a;}
     </div>
   </div>
 
-  <div class="search-row">
-    <input type="text" class="search-input" id="searchInput" placeholder="">
-    <button class="density-btn" id="btnDensity"></button>
-    <button class="filter-toggle" id="btnFilters"></button>
+  <div id="pageHome">
+    <div class="search-row">
+      <input type="text" class="search-input" id="searchInput" placeholder="">
+      <button class="density-btn" id="btnDensity"></button>
+      <button class="filter-toggle" id="btnFilters"></button>
+    </div>
+    <div class="chip-row" id="folderChipRow"></div>
+    <div class="list" id="routeList"></div>
   </div>
-  <div class="chip-row" id="folderChipRow"></div>
 
-  <div class="list" id="routeList"></div>
+  <div id="pageIdeas" style="display:none;"></div>
+  <div id="pageData" style="display:none;padding-bottom:90px;"></div>
 
   <button class="fab" id="fabAdd">+</button>
+
+  <div class="bottomnav">
+    <button class="nav-btn active" data-page="home"><span class="nav-icon">🏠</span><span id="navHomeLbl"></span></button>
+    <button class="nav-btn" data-page="ideas"><span class="nav-icon">💡</span><span id="navIdeasLbl"></span></button>
+    <button class="nav-btn" data-page="data"><span class="nav-icon">📊</span><span id="navDataLbl"></span></button>
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -387,6 +455,7 @@ const STRINGS = {
   pasteNamePh:["Ej. Pico del Lobo por la cara norte","Adib. Aizkorri iparraldetik"],
   analyzeAddBtn:["Analizar y añadir","Aztertu eta gehitu"],
   addFolderLabel:["Carpeta para las rutas nuevas (opcional)","Ibilbide berrientzako karpeta (aukerakoa)"],
+  importHelpHint:["💡 ¿Tu ruta viene de Wikiloc o Strava? Abre la actividad allí, busca \"Exportar GPX\" / \"Descargar\" (en Wikiloc, el botón de descarga; en Strava, el menú ⋯ de la actividad → Export GPX), guarda el archivo y súbelo aquí arriba.","💡 Zure ibilbidea Wikiloc edo Stravatik dator? Ireki jarduera hango webgunean, bilatu \"Export GPX\" / \"Deskargatu\" aukera (Wikiloc-en, deskarga-botoia; Stravan, jardueraren ⋯ menua → Export GPX), gorde fitxategia eta igo ezazu hemen goian."],
   pasteEmptyAlert:["Pega primero el contenido del GPX.","Itsatsi lehenbizi GPXaren edukia."],
   gpxReadErrorPrefix:["No se ha podido leer el GPX: ","Ezin izan da GPXa irakurri: "],
   someFailedPrefix:["Algunas rutas no se pudieron añadir:\\n","Ibilbide batzuk ezin izan dira gehitu:\\n"],
@@ -482,7 +551,66 @@ const STRINGS = {
   recordedNamePromptMsg:["Nombre de la nueva ruta:","Ibilbide berriaren izena:"],
   recordedDefaultNameTpl:["{name} · grabado {date}","{name} · grabatuta {date}"],
 
-  storageBrokenAlert:["Este navegador no permite guardar datos de forma local (almacenamiento bloqueado). Las rutas no se conservarán al cerrar la app. Prueba a abrir el archivo en Chrome sin modo incógnito.","Nabigatzaile honek ez du datuak lokalki gordetzen uzten (biltegiratzea blokeatuta). Ibilbideak ez dira gordeko aplikazioa itxitakoan. Saiatu fitxategia Chrome-n irekitzen, modu ezkutuan egon gabe."]
+  storageBrokenAlert:["Este navegador no permite guardar datos de forma local (almacenamiento bloqueado). Las rutas no se conservarán al cerrar la app. Prueba a abrir el archivo en Chrome sin modo incógnito.","Nabigatzaile honek ez du datuak lokalki gordetzen uzten (biltegiratzea blokeatuta). Ibilbideak ez dira gordeko aplikazioa itxitakoan. Saiatu fitxategia Chrome-n irekitzen, modu ezkutuan egon gabe."],
+
+  navHome:["Inicio","Hasiera"],
+  navIdeas:["Ideas","Ideiak"],
+  navData:["Datos","Datuak"],
+
+  reverseBtn:["🔄 Invertir ruta","🔄 Ibilbidea alderantzikatu"],
+  reverseChoiceTitle:["Invertir ruta","Ibilbidea alderantzikatu"],
+  reverseChoiceDesc:["¿Quieres modificar esta ruta o crear una copia nueva invertida?","Ibilbide hau bera aldatu nahi duzu, ala kopia berri bat sortu alderantzikatuta?"],
+  reverseOverwriteBtn:["Modificar esta ruta","Ibilbide hau aldatu"],
+  reverseCopyBtn:["Crear una copia nueva","Kopia berria sortu"],
+  reversedSuffixWord:[" (invertida)"," (alderantzikatua)"],
+
+  driveToStartBtn:["🚗 Ir al inicio en coche","🚗 Abiapuntura kotxez joan"],
+  driveNoPointsAlert:["Esta ruta no tiene puntos.","Ibilbide honek ez du punturik."],
+
+  difficultyLabel:["Dificultad","Zailtasuna"],
+  difficultyAuto:["Automática","Automatikoa"],
+  difficultyEasy:["Fácil","Erraza"],
+  difficultyMedium:["Media","Ertaina"],
+  difficultyHard:["Difícil","Zaila"],
+
+  terrainTitle:["Tipo de terreno","Zoruaren mota"],
+  terrainRoad:["Carretera","Errepidea"],
+  terrainTrack:["Pista","Pista"],
+  terrainMountain:["Monte / sendero","Mendia / bidezidorra"],
+  terrainAnalyzing:["Analizando terreno…","Zorua aztertzen…"],
+  terrainNoData:["No se ha podido analizar el terreno todavía.","Oraindik ezin izan da zorua aztertu."],
+  terrainRetryBtn:["🔍 Volver a analizar","🔍 Berranalizatu"],
+
+  summaryTitle:["Resumen","Laburpena"],
+  calendarTitle:["Calendario","Egutegia"],
+  weekTab:["Semana","Astea"],
+  monthTab:["Mes","Hilabetea"],
+  yearTab:["Año","Urtea"],
+  goalsTitle:["Tus metas semanales","Zure asteko helburuak"],
+  goalKmLabel:["Km / semana","Km / astea"],
+  goalHoursLabel:["Horas / semana","Orduak / astea"],
+  goalGainLabel:["Desnivel (m) / semana","Desnibela (m) / astea"],
+  saveGoalsBtn:["Guardar metas","Helburuak gorde"],
+  pointsLabel:["Puntos","Puntuak"],
+  streakLabelTpl:["Racha (semanas)","Segida (asteak)"],
+  noPeriodDataHint:["Todavía no hay actividad registrada en este periodo.","Oraindik ez dago jarduerarik erregistratuta epe honetan."],
+
+  markDoneCheckbox:["Ruta ya realizada","Egindako ibilbidea"],
+  dateDoneLabel:["Fecha en la que la hiciste","Egin zenuen data"],
+
+  addEntryBtn:["Añadir al calendario","Egutegira gehitu"],
+  entryDoneOpt:["Hecha","Eginda"],
+  entryPlannedOpt:["Planificada","Planifikatuta"],
+  noEntriesForDay:["Sin nada este día.","Ezer ez egun honetan."],
+  selectRoutePh:["Elige una ruta","Aukeratu ibilbide bat"],
+
+  ideasTitle:["Ideas cerca de ti","Inguruko ideiak"],
+  ideasIntro:["Explora picos cercanos usando datos de OpenStreetMap. Ojo: no es una recomendación por IA real -no puedo guardar una clave de API de forma segura en esta app sin exponerla-, pero te ayuda a descubrir cimas cercanas y comparar con tu media habitual.","Inguruko gailurrak aurkitu OpenStreetMap-eko datuak erabiliz. Kontuan izan: ez da benetako IA bidezko gomendio bat -ezin dut API gako bat modu seguruan gorde aplikazio honetan agerian utzi gabe-, baina inguruko gailurrak aurkitzen lagunduko dizu, zure ohiko batez bestekoarekin alderatuz."],
+  findNearbyBtn:["Buscar picos cercanos","Bilatu inguruko gailurrak"],
+  ideasLocating:["Buscando tu ubicación…","Zure kokapena bilatzen…"],
+  ideasNoPeaks:["No se han encontrado picos cerca, o no se ha podido consultar OpenStreetMap ahora mismo.","Ez da gailurrik aurkitu inguruan, edo ezin izan da OpenStreetMap orain kontsultatu."],
+  yourAvgTpl:["Tus rutas suelen tener de media {km} y {gain} de desnivel.","Zure ibilbideek batez beste {km} eta {gain} desnibel izan ohi dute."],
+  ideasAiNote:["Datos de picos: OpenStreetMap. Combínalo con Wikiloc para planear la ruta exacta hasta la cima.","Gailurren datuak: OpenStreetMap. Erabili Wikiloc-ekin batera gailurrerako ibilbide zehatza planifikatzeko."]
 };
 function t(key, vars){
   const arr = STRINGS[key];
@@ -702,21 +830,30 @@ function routeToGPXString(full){
 let state = {
   index: [],
   folders: [],
-  settings: {speedKmh: 4, method: "naismith", units: "metric", theme: "light", mapLayer: "osm", lang: "eu", listDensity: "comfortable"},
-  filters: {q:"", folderId:"all", tags:[], distMin:null, distMax:null, gainMin:null, gainMax:null, timeMin:null, timeMax:null, favOnly:false, status:"", sort:"date_desc"}
+  calendarEntries: [],
+  settings: {speedKmh: 4, method: "naismith", units: "metric", theme: "light", mapLayer: "osm", lang: "eu", listDensity: "comfortable", goals:{weeklyKm:null, weeklyHours:null, weeklyGain:null}},
+  filters: {q:"", folderId:"all", tags:[], distMin:null, distMax:null, gainMin:null, gainMax:null, timeMin:null, timeMax:null, favOnly:false, status:"", difficulty:"", sort:"date_desc"}
 };
+let currentPage = "home";
 
 const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,8);
 
 async function init(){
   state.index = await dbGet("index", []);
   state.folders = await dbGet("folders", []);
-  state.settings = Object.assign({speedKmh:4, method:"naismith", units:"metric", theme:"light", mapLayer:"osm", lang:"eu", listDensity:"comfortable"}, await dbGet("settings", {}));
+  state.calendarEntries = await dbGet("calendarEntries", []);
+  const defaultSettings = {speedKmh:4, method:"naismith", units:"metric", theme:"light", mapLayer:"osm", lang:"eu", listDensity:"comfortable", goals:{weeklyKm:null, weeklyHours:null, weeklyGain:null}};
+  const loadedSettings = await dbGet("settings", {});
+  state.settings = Object.assign({}, defaultSettings, loadedSettings, {goals: Object.assign({}, defaultSettings.goals, loadedSettings.goals||{})});
   applyTheme();
   document.documentElement.lang = state.settings.lang;
   document.getElementById("searchInput").placeholder = t("searchPlaceholder");
   document.getElementById("btnDensity").onclick = toggleDensity;
   updateDensityBtn();
+  document.getElementById("navHomeLbl").textContent = t("navHome");
+  document.getElementById("navIdeasLbl").textContent = t("navIdeas");
+  document.getElementById("navDataLbl").textContent = t("navData");
+  document.querySelectorAll(".nav-btn").forEach(b=> b.onclick = ()=> switchPage(b.dataset.page));
   render();
   if(storageBroken){
     alert(t("storageBrokenAlert"));
@@ -750,6 +887,7 @@ function getFilteredSorted(){
   if(f.timeMax!=null) list = list.filter(r=> { const tt=timeForRoute(r); return tt!=null && tt<=f.timeMax; });
   if(f.favOnly) list = list.filter(r=> r.favorite);
   if(f.status) list = list.filter(r=> (r.status||"")===f.status);
+  if(f.difficulty) list = list.filter(r=> effectiveDifficulty(r)===f.difficulty);
 
   const [key,dir] = f.sort.split("_");
   list.sort((a,b)=>{
@@ -838,6 +976,7 @@ function renderList(){
       <div class="tags-line">
         ${fname? `<span class="folder-pill">${escapeHtml(fname)}</span>`:""}
         ${r.status? `<span class="status-badge ${r.status}">${statusLabel(r.status)}</span>`:""}
+        <span class="diff-badge ${effectiveDifficulty(r)}">${difficultyLabelFor(effectiveDifficulty(r))}</span>
         ${(r.tags||[]).map(tg=>`<span class="tag-pill">${escapeHtml(tg)}</span>`).join("")}
       </div>
     </div>`;
@@ -853,10 +992,10 @@ function renderList(){
 function isFilterActive(){
   const f = state.filters;
   return f.folderId!=="all" || f.tags.length || f.distMin!=null || f.distMax!=null ||
-         f.gainMin!=null || f.gainMax!=null || f.timeMin!=null || f.timeMax!=null || f.favOnly || f.status;
+         f.gainMin!=null || f.gainMax!=null || f.timeMin!=null || f.timeMax!=null || f.favOnly || f.status || f.difficulty;
 }
 function resetFilters(){
-  state.filters = {q:state.filters.q, folderId:"all", tags:[], distMin:null, distMax:null, gainMin:null, gainMax:null, timeMin:null, timeMax:null, favOnly:false, status:"", sort:state.filters.sort};
+  state.filters = {q:state.filters.q, folderId:"all", tags:[], distMin:null, distMax:null, gainMin:null, gainMax:null, timeMin:null, timeMax:null, favOnly:false, status:"", difficulty:"", sort:state.filters.sort};
 }
 function render(){ renderFolderChips(); renderList(); }
 
@@ -902,6 +1041,14 @@ function openFilterSheet(){
       <option value="" ${!f.status?'selected':''}>${t("allStatusOpt")}</option>
       <option value="pendiente" ${f.status==='pendiente'?'selected':''}>${t("pendingOpt")}</option>
       <option value="hecha" ${f.status==='hecha'?'selected':''}>${t("doneOpt")}</option>
+    </select>
+
+    <label>${t("difficultyLabel")}</label>
+    <select id="fDifficulty">
+      <option value="" ${!f.difficulty?'selected':''}>${t("allStatusOpt")}</option>
+      <option value="erraza" ${f.difficulty==='erraza'?'selected':''}>${t("difficultyEasy")}</option>
+      <option value="ertaina" ${f.difficulty==='ertaina'?'selected':''}>${t("difficultyMedium")}</option>
+      <option value="zaila" ${f.difficulty==='zaila'?'selected':''}>${t("difficultyHard")}</option>
     </select>
 
     <label>${t("tagsLabel")}</label>
@@ -957,6 +1104,7 @@ function openFilterSheet(){
   overlay.querySelector("#applyFilters").onclick = ()=>{
     f.folderId = overlay.querySelector("#fFolder").value;
     f.status = overlay.querySelector("#fStatus").value;
+    f.difficulty = overlay.querySelector("#fDifficulty").value;
     f.favOnly = favOnly;
     const dMinV = numOrNull(overlay.querySelector("#fDistMin").value);
     const dMaxV = numOrNull(overlay.querySelector("#fDistMax").value);
@@ -1176,6 +1324,8 @@ async function importBackupFile(file){
     state.index.push({
       id:newId, name:newFull.name, folderId:newFolderId, tags:newFull.tags||[],
       distanceKm:newFull.distanceKm, gainM:newFull.gainM, lossM:newFull.lossM,
+      hasTimes:newFull.hasTimes||false, totalTimeSec:newFull.totalTimeSec||null, maxSlopePercent:newFull.maxSlopePercent||null,
+      difficultyOverride:newFull.difficultyOverride||null,
       createdAt:newFull.createdAt||Date.now(), favorite:newFull.favorite||false, status:newFull.status||null
     });
   }
@@ -1209,11 +1359,17 @@ function openMergeToolSheet(){
       id, name, folderId:null, tags:[], points:decimate(points,2000),
       distanceKm:stats.distanceKm, gainM:stats.gainM, lossM:stats.lossM, minEle:stats.minEle, maxEle:stats.maxEle,
       maxSlopePercent:stats.maxSlopePercent, hasTimes:false, movingTimeSec:null, totalTimeSec:null, avgSpeedMovingKmh:null,
-      favorite:false, status:null, notes:"", photos:[], waypoints:[], createdAt:Date.now()
+      favorite:false, status:null, notes:"", photos:[], waypoints:[],
+      difficultyOverride:null, terrain:null, terrainAnalyzedAt:null, createdAt:Date.now()
     };
     await dbSet("route:"+id, full);
-    state.index.push({id,name,folderId:null,tags:[],distanceKm:stats.distanceKm,gainM:stats.gainM,lossM:stats.lossM,createdAt:full.createdAt, favorite:false, status:null});
+    state.index.push({
+      id,name,folderId:null,tags:[],distanceKm:stats.distanceKm,gainM:stats.gainM,lossM:stats.lossM,
+      hasTimes:false, totalTimeSec:null, maxSlopePercent:stats.maxSlopePercent, difficultyOverride:null,
+      createdAt:full.createdAt, favorite:false, status:null
+    });
     await dbSet("index", state.index);
+    analyzeAndStoreTerrain(id);
     closeOverlay();
     render();
     alert(t("mergeCreatedAlert"));
@@ -1253,7 +1409,20 @@ function openAddSheet(){
 
     <label style="margin-top:18px;">${t("addFolderLabel")}</label>
     <select id="addFolderSelect">${folderOpts}</select>
+    <div class="checkbox-row"><input type="checkbox" id="addMarkDone"> <span>${t("markDoneCheckbox")}</span></div>
+    <div id="addDoneDateWrap" style="display:none;">
+      <label>${t("dateDoneLabel")}</label>
+      <input type="text" id="addDoneDate" placeholder="YYYY-MM-DD" value="${new Date().toISOString().slice(0,10)}">
+    </div>
+    <p class="hint">${t("importHelpHint")}</p>
   `);
+
+  overlay.querySelector("#addMarkDone").onchange = (e)=>{
+    overlay.querySelector("#addDoneDateWrap").style.display = e.target.checked ? "block" : "none";
+  };
+  function getDoneDate(){
+    return overlay.querySelector("#addMarkDone").checked ? overlay.querySelector("#addDoneDate").value : null;
+  }
 
   overlay.querySelectorAll("[data-tab]").forEach(b=>{
     b.onclick = ()=>{
@@ -1272,12 +1441,13 @@ function openAddSheet(){
     const preview = overlay.querySelector("#fileListPreview");
     preview.innerHTML = files.map(f=>`<div class="filecard"><span>${escapeHtml(f.name)}</span><span>${t('processingLabel')}</span></div>`).join("");
     const folderId = overlay.querySelector("#addFolderSelect").value || null;
+    const doneDate = getDoneDate();
     let added=0, failed=[];
     for(const file of files){
       try{
         const text = await file.text();
         const defaultName = file.name.replace(/\.gpx$/i,"");
-        await addRouteFromGPX(text, defaultName, folderId);
+        await addRouteFromGPX(text, defaultName, folderId, doneDate);
         added++;
       }catch(err){ failed.push(file.name+": "+err.message); }
     }
@@ -1292,14 +1462,14 @@ function openAddSheet(){
     if(!text){ alert(t("pasteEmptyAlert")); return; }
     const folderId = overlay.querySelector("#addFolderSelect").value || null;
     try{
-      await addRouteFromGPX(text, name, folderId);
+      await addRouteFromGPX(text, name, folderId, getDoneDate());
       closeOverlay();
       render();
     }catch(err){ alert(t("gpxReadErrorPrefix")+err.message); }
   };
 }
 
-async function addRouteFromGPX(text, defaultName, folderId){
+async function addRouteFromGPX(text, defaultName, folderId, doneDate){
   const parsed = parseGPX(text);
   const stats = computeStats(parsed.points);
   const storedPoints = decimate(parsed.points, 1500);
@@ -1311,7 +1481,8 @@ async function addRouteFromGPX(text, defaultName, folderId){
     distanceKm: stats.distanceKm, gainM: stats.gainM, lossM: stats.lossM,
     minEle: stats.minEle, maxEle: stats.maxEle, maxSlopePercent: stats.maxSlopePercent,
     hasTimes: stats.hasTimes, movingTimeSec: stats.movingTimeSec, totalTimeSec: stats.totalTimeSec, avgSpeedMovingKmh: stats.avgSpeedMovingKmh,
-    favorite:false, status:null, notes:"", photos:[], waypoints:[],
+    favorite:false, status: doneDate? "hecha" : null, notes:"", photos:[], waypoints:[],
+    difficultyOverride:null, terrain:null, terrainAnalyzedAt:null,
     createdAt: Date.now()
   };
   const ok = await dbSet("route:"+id, full);
@@ -1319,9 +1490,15 @@ async function addRouteFromGPX(text, defaultName, folderId){
   state.index.push({
     id, name, folderId: full.folderId, tags: [],
     distanceKm: stats.distanceKm, gainM: stats.gainM, lossM: stats.lossM,
-    createdAt: full.createdAt, favorite:false, status:null
+    hasTimes: stats.hasTimes, totalTimeSec: stats.totalTimeSec, maxSlopePercent: stats.maxSlopePercent, difficultyOverride:null,
+    createdAt: full.createdAt, favorite:false, status: doneDate? "hecha" : null
   });
   await dbSet("index", state.index);
+  if(doneDate){
+    state.calendarEntries.push({id:uid(), routeId:id, date:doneDate, type:"done"});
+    await dbSet("calendarEntries", state.calendarEntries);
+  }
+  analyzeAndStoreTerrain(id);
   return id;
 }
 
@@ -1334,11 +1511,21 @@ async function saveRecordedRoute(name, rawPoints, folderId){
     distanceKm: stats.distanceKm, gainM: stats.gainM, lossM: stats.lossM, minEle: stats.minEle, maxEle: stats.maxEle,
     maxSlopePercent: stats.maxSlopePercent, hasTimes: stats.hasTimes, movingTimeSec: stats.movingTimeSec,
     totalTimeSec: stats.totalTimeSec, avgSpeedMovingKmh: stats.avgSpeedMovingKmh,
-    favorite:false, status:"hecha", notes:"", photos:[], waypoints:[], createdAt: Date.now()
+    favorite:false, status:"hecha", notes:"", photos:[], waypoints:[],
+    difficultyOverride:null, terrain:null, terrainAnalyzedAt:null,
+    createdAt: Date.now()
   };
   await dbSet("route:"+id, full);
-  state.index.push({id,name,folderId:full.folderId,tags:[],distanceKm:stats.distanceKm,gainM:stats.gainM,lossM:stats.lossM,createdAt:full.createdAt, favorite:false, status:"hecha"});
+  state.index.push({
+    id,name,folderId:full.folderId,tags:[],distanceKm:stats.distanceKm,gainM:stats.gainM,lossM:stats.lossM,
+    hasTimes:stats.hasTimes, totalTimeSec:stats.totalTimeSec, maxSlopePercent:stats.maxSlopePercent, difficultyOverride:null,
+    createdAt:full.createdAt, favorite:false, status:"hecha"
+  });
   await dbSet("index", state.index);
+  const doneDate = new Date(full.createdAt).toISOString().slice(0,10);
+  state.calendarEntries.push({id:uid(), routeId:id, date:doneDate, type:"done"});
+  await dbSet("calendarEntries", state.calendarEntries);
+  analyzeAndStoreTerrain(id);
   render();
 }
 
@@ -1482,6 +1669,7 @@ async function openDetail(id){
         <div class="tags-line">
           ${full.folderId? `<span class="folder-pill">${escapeHtml(folderName(full.folderId)||"")}</span>`:""}
           ${full.status? `<span class="status-badge ${full.status}">${statusLabel(full.status)}</span>`:""}
+          <span class="diff-badge ${effectiveDifficulty(full)}">${difficultyLabelFor(effectiveDifficulty(full))}</span>
           ${(full.tags||[]).map(tg=>`<span class="tag-pill">${escapeHtml(tg)}</span>`).join("")}
         </div>
         <button class="btn btn-primary" id="liveBtn">${t("liveBtnLabel")}</button>
@@ -1514,7 +1702,11 @@ async function openDetail(id){
       ${full.notes? `<div class="section-title" style="padding:0 16px;margin-top:4px;">${t("notesTitle")}</div><div class="notes-text">${escapeHtml(full.notes)}</div>`:""}
       ${(full.photos && full.photos.length)? `<div class="section-title" style="padding:0 16px;">${t("photosTitle")}</div><div class="photo-grid" style="padding:0 16px;" id="photoGrid">${full.photos.map(ph=>`<img class="photo-thumb" src="${ph.dataUrl}" data-photo="${ph.dataUrl}">`).join("")}</div>`:""}
 
+      <div id="terrainSection">${terrainSectionHtml(full)}</div>
+
       <div class="action-row" style="padding:16px;">
+        <button class="btn btn-secondary" id="btnDrive">${t("driveToStartBtn")}</button>
+        <button class="btn btn-secondary" id="btnReverse">${t("reverseBtn")}</button>
         <button class="btn btn-secondary" id="btnAddWaypoint">${t("addWaypointBtn")}</button>
         <button class="btn btn-secondary" id="btnEditTrack">${t("editTrackBtn")}</button>
         <button class="btn btn-secondary" id="btnOfflineMap">${t("offlineMapBtn")}</button>
@@ -1547,7 +1739,16 @@ async function openDetail(id){
     renderList();
   };
   overlay.querySelector("#liveBtn").onclick = ()=>{ closeFn(); openLiveTracking(full); };
+  overlay.querySelector("#btnDrive").onclick = ()=> driveToStart(full);
+  overlay.querySelector("#btnReverse").onclick = ()=> openReverseChoice(full);
   overlay.querySelector("#btnEditTrack").onclick = ()=>{ closeFn(); openTrackEditSheet(full, ()=> openDetail(id)); };
+  const terrainRetryBtn = overlay.querySelector("#terrainRetry");
+  if(terrainRetryBtn) terrainRetryBtn.onclick = async (e)=>{
+    e.target.disabled = true;
+    await analyzeAndStoreTerrain(full.id);
+    const fresh = await dbGet("route:"+full.id, null);
+    if(fresh){ full.terrain = fresh.terrain; document.getElementById("terrainSection").innerHTML = terrainSectionHtml(full); }
+  };
   overlay.querySelector("#btnOfflineMap").onclick = ()=> openOfflineDownloadSheet(full);
   overlay.querySelector("#btnExportGpx").onclick = ()=> downloadText((full.name||"ibilbidea").replace(/[^a-z0-9]+/gi,"_")+".gpx", routeToGPXString(full), "application/gpx+xml");
   overlay.querySelector("#btnShare").onclick = ()=> shareRouteSummary(full);
@@ -1751,6 +1952,13 @@ function openEditSheet(full, onSaved){
       <option value="hecha" ${full.status==='hecha'?'selected':''}>${t("statusHecha")}</option>
     </select>
     <div class="checkbox-row"><input type="checkbox" id="editFav" ${full.favorite?'checked':''}> <span>${t("favCheckboxLabel")}</span></div>
+    <label>${t("difficultyLabel")}</label>
+    <select id="editDifficulty">
+      <option value="" ${!full.difficultyOverride?'selected':''}>${t("difficultyAuto")} (${difficultyLabelFor(computeDifficulty(full))})</option>
+      <option value="erraza" ${full.difficultyOverride==='erraza'?'selected':''}>${t("difficultyEasy")}</option>
+      <option value="ertaina" ${full.difficultyOverride==='ertaina'?'selected':''}>${t("difficultyMedium")}</option>
+      <option value="zaila" ${full.difficultyOverride==='zaila'?'selected':''}>${t("difficultyHard")}</option>
+    </select>
     <label>${t("notesLabel")}</label>
     <textarea class="notes-input" id="editNotes">${escapeHtml(full.notes||"")}</textarea>
     <label>${t("photosLabel")}</label>
@@ -1805,10 +2013,11 @@ function openEditSheet(full, onSaved){
     const status = overlay.querySelector("#editStatus").value || null;
     const favorite = overlay.querySelector("#editFav").checked;
     const notes = overlay.querySelector("#editNotes").value;
-    full.name=name; full.folderId=folderId; full.tags=tags; full.status=status; full.favorite=favorite; full.notes=notes; full.photos=photos;
+    const difficultyOverride = overlay.querySelector("#editDifficulty").value || null;
+    full.name=name; full.folderId=folderId; full.tags=tags; full.status=status; full.favorite=favorite; full.notes=notes; full.photos=photos; full.difficultyOverride=difficultyOverride;
     await dbSet("route:"+full.id, full);
     const idx = state.index.find(r=>r.id===full.id);
-    if(idx){ idx.name=name; idx.folderId=folderId; idx.tags=tags; idx.status=status; idx.favorite=favorite; }
+    if(idx){ idx.name=name; idx.folderId=folderId; idx.tags=tags; idx.status=status; idx.favorite=favorite; idx.difficultyOverride=difficultyOverride; }
     await dbSet("index", state.index);
     closeOverlay();
     render();
@@ -1918,7 +2127,7 @@ function openTrackEditSheet(full, onSaved){
     full.hasTimes=stats.hasTimes; full.movingTimeSec=stats.movingTimeSec; full.totalTimeSec=stats.totalTimeSec; full.avgSpeedMovingKmh=stats.avgSpeedMovingKmh;
     await dbSet("route:"+full.id, full);
     const idx = state.index.find(r=>r.id===full.id);
-    if(idx){ idx.distanceKm=stats.distanceKm; idx.gainM=stats.gainM; idx.lossM=stats.lossM; }
+    if(idx){ idx.distanceKm=stats.distanceKm; idx.gainM=stats.gainM; idx.lossM=stats.lossM; idx.hasTimes=stats.hasTimes; idx.totalTimeSec=stats.totalTimeSec; idx.maxSlopePercent=stats.maxSlopePercent; }
     await dbSet("index", state.index);
     map.remove(); overlay.remove();
     render();
@@ -2124,6 +2333,501 @@ function openLiveTracking(full){
       }
     }
   }
+}
+
+/* ============================================================
+   Zailtasuna (automatikoa + eskuzko gainidazketa)
+   ============================================================ */
+function computeDifficulty(r){
+  const d = r.distanceKm||0, g = r.gainM||0, slope = r.maxSlopePercent||0;
+  const score = d + (g/100)*1.3 + slope*0.15;
+  if(score < 8) return "erraza";
+  if(score < 20) return "ertaina";
+  return "zaila";
+}
+function effectiveDifficulty(r){ return r.difficultyOverride || computeDifficulty(r); }
+function difficultyLabelFor(diff){
+  if(diff==="erraza") return t("difficultyEasy");
+  if(diff==="ertaina") return t("difficultyMedium");
+  return t("difficultyHard");
+}
+
+/* ============================================================
+   Ibilbidea alderantzikatu
+   ============================================================ */
+function openReverseChoice(full){
+  const overlay = openOverlay(`
+    <div class="sheet-title"><h2>${t("reverseChoiceTitle")}</h2><button class="close-x" data-close>×</button></div>
+    <p class="hint">${t("reverseChoiceDesc")}</p>
+    <button class="btn btn-primary" id="revOverwrite">${t("reverseOverwriteBtn")}</button>
+    <button class="btn btn-secondary" id="revCopy">${t("reverseCopyBtn")}</button>
+  `);
+  overlay.querySelector("#revOverwrite").onclick = ()=> doReverseRoute(full, false);
+  overlay.querySelector("#revCopy").onclick = ()=> doReverseRoute(full, true);
+}
+async function doReverseRoute(full, asCopy){
+  const reversedPts = full.points.slice().reverse().map(p=>({lat:p.lat, lon:p.lon, ele:p.ele, time:null}));
+  const stats = computeStats(reversedPts);
+  closeOverlay();
+  if(asCopy){
+    const id = uid();
+    const name = full.name + t("reversedSuffixWord");
+    const copy = {
+      id, name, folderId: full.folderId, tags: (full.tags||[]).slice(),
+      points: reversedPts,
+      distanceKm: stats.distanceKm, gainM: stats.gainM, lossM: stats.lossM, minEle: stats.minEle, maxEle: stats.maxEle,
+      maxSlopePercent: stats.maxSlopePercent, hasTimes:false, movingTimeSec:null, totalTimeSec:null, avgSpeedMovingKmh:null,
+      favorite:false, status:null, notes:"", photos:[], waypoints:[],
+      difficultyOverride:null, terrain:null, terrainAnalyzedAt:null, createdAt: Date.now()
+    };
+    await dbSet("route:"+id, copy);
+    state.index.push({
+      id, name, folderId: full.folderId, tags: copy.tags,
+      distanceKm: stats.distanceKm, gainM: stats.gainM, lossM: stats.lossM,
+      hasTimes:false, totalTimeSec:null, maxSlopePercent: stats.maxSlopePercent, difficultyOverride:null,
+      createdAt: copy.createdAt, favorite:false, status:null
+    });
+    await dbSet("index", state.index);
+    analyzeAndStoreTerrain(id);
+    closeDetailOverlay();
+    render();
+    openDetail(id);
+  } else {
+    full.points = reversedPts;
+    full.distanceKm=stats.distanceKm; full.gainM=stats.gainM; full.lossM=stats.lossM;
+    full.minEle=stats.minEle; full.maxEle=stats.maxEle; full.maxSlopePercent=stats.maxSlopePercent;
+    full.hasTimes=false; full.movingTimeSec=null; full.totalTimeSec=null; full.avgSpeedMovingKmh=null;
+    full.terrain=null; full.terrainAnalyzedAt=null;
+    await dbSet("route:"+full.id, full);
+    const idx = state.index.find(r=>r.id===full.id);
+    if(idx){ idx.distanceKm=stats.distanceKm; idx.gainM=stats.gainM; idx.lossM=stats.lossM; idx.hasTimes=false; idx.totalTimeSec=null; idx.maxSlopePercent=stats.maxSlopePercent; }
+    await dbSet("index", state.index);
+    analyzeAndStoreTerrain(full.id);
+    closeDetailOverlay();
+    render();
+    openDetail(full.id);
+  }
+}
+
+/* ============================================================
+   Abiapuntura kotxez joan
+   ============================================================ */
+function driveToStart(full){
+  if(!full.points || !full.points.length){ alert(t("driveNoPointsAlert")); return; }
+  const p = full.points[0];
+  const url = "https://www.google.com/maps/dir/?api=1&destination="+p.lat+","+p.lon+"&travelmode=driving";
+  window.open(url, "_blank");
+}
+
+/* ============================================================
+   Zoruaren mota: OpenStreetMap (Overpass) bidezko analisia
+   ============================================================ */
+function projectFlat(lat, lon, refLat){
+  const R=6371000;
+  const x = lon*Math.PI/180*R*Math.cos(refLat*Math.PI/180);
+  const y = lat*Math.PI/180*R;
+  return {x,y};
+}
+function pointToSegDistFlat(p, a, b){
+  const dx=b.x-a.x, dy=b.y-a.y;
+  const len2 = dx*dx+dy*dy;
+  if(len2===0) return Math.hypot(p.x-a.x,p.y-a.y);
+  let tt = ((p.x-a.x)*dx+(p.y-a.y)*dy)/len2;
+  tt = Math.max(0,Math.min(1,tt));
+  return Math.hypot(p.x-(a.x+tt*dx), p.y-(a.y+tt*dy));
+}
+function classifyHighway(tags){
+  const h=(tags&&tags.highway)||"";
+  if(["path","footway","bridleway","steps","corridor"].includes(h)) return "mendia";
+  if(h==="track") return "pista";
+  if(["motorway","trunk","primary","secondary","tertiary","unclassified","residential","service","living_street","road","motorway_link","trunk_link","primary_link","secondary_link","tertiary_link"].includes(h)) return "errepidea";
+  return "mendia";
+}
+async function fetchOSMWays(bounds){
+  const q = "[out:json][timeout:25];way[\"highway\"](" + bounds.minLat + "," + bounds.minLon + "," + bounds.maxLat + "," + bounds.maxLon + ");out geom;";
+  const resp = await fetch("https://overpass-api.de/api/interpreter", {method:"POST", body:"data="+encodeURIComponent(q)});
+  if(!resp.ok) throw new Error("overpass fail");
+  const data = await resp.json();
+  return (data.elements||[]).filter(w=>w.type==="way" && w.geometry && w.geometry.length>1);
+}
+async function analyzeTerrain(full){
+  if(!full.points || full.points.length<2) return null;
+  const lats=full.points.map(p=>p.lat), lons=full.points.map(p=>p.lon);
+  const bounds={minLat:Math.min(...lats)-0.003,maxLat:Math.max(...lats)+0.003,minLon:Math.min(...lons)-0.003,maxLon:Math.max(...lons)+0.003};
+  let ways;
+  try{ ways = await fetchOSMWays(bounds); }catch(e){ return null; }
+  if(!ways.length) return {errepidea:0,pista:0,mendia:100};
+  const refLat = (bounds.minLat+bounds.maxLat)/2;
+  const classified = ways.map(w=>({ cat: classifyHighway(w.tags), pts: w.geometry.map(g=>projectFlat(g.lat, g.lon, refLat)) }));
+  let dErrepidea=0,dPista=0,dMendia=0;
+  const THRESH=35;
+  const sample = decimate(full.points, 400);
+  for(let i=1;i<sample.length;i++){
+    const segDist = haversine(sample[i-1], sample[i]);
+    const mid = {lat:(sample[i-1].lat+sample[i].lat)/2, lon:(sample[i-1].lon+sample[i].lon)/2};
+    const mp = projectFlat(mid.lat, mid.lon, refLat);
+    let bestCat="mendia", bestD=THRESH;
+    for(const w of classified){
+      for(let j=1;j<w.pts.length;j++){
+        const d = pointToSegDistFlat(mp, w.pts[j-1], w.pts[j]);
+        if(d<bestD){ bestD=d; bestCat=w.cat; }
+      }
+    }
+    if(bestCat==="errepidea") dErrepidea+=segDist;
+    else if(bestCat==="pista") dPista+=segDist;
+    else dMendia+=segDist;
+  }
+  const total=dErrepidea+dPista+dMendia||1;
+  return {errepidea:Math.round(dErrepidea/total*100), pista:Math.round(dPista/total*100), mendia:Math.round(dMendia/total*100)};
+}
+async function analyzeAndStoreTerrain(routeId){
+  const full = await dbGet("route:"+routeId, null);
+  if(!full) return;
+  let terrain;
+  try{ terrain = await analyzeTerrain(full); }catch(e){ return; }
+  if(!terrain) return;
+  full.terrain = terrain;
+  full.terrainAnalyzedAt = Date.now();
+  await dbSet("route:"+routeId, full);
+  const terEl = document.getElementById("terrainSection");
+  if(terEl && detailCtx.routeId===routeId) terEl.innerHTML = terrainSectionHtml(full);
+}
+function terrainSectionHtml(full){
+  if(!full.terrain){
+    return `<div class="section-title" style="padding:0 16px;">${t("terrainTitle")}</div>
+      <p class="hint" style="padding:0 16px;">${t("terrainNoData")}</p>
+      <div style="padding:0 16px 10px;"><button class="btn btn-secondary" id="terrainRetry">${t("terrainRetryBtn")}</button></div>`;
+  }
+  const tr = full.terrain;
+  return `<div class="section-title" style="padding:0 16px;">${t("terrainTitle")}</div>
+    <div style="padding:0 16px 6px;">
+      <div class="terrain-bar">
+        <div class="terrain-seg errepidea" style="width:${tr.errepidea}%"></div>
+        <div class="terrain-seg pista" style="width:${tr.pista}%"></div>
+        <div class="terrain-seg mendia" style="width:${tr.mendia}%"></div>
+      </div>
+      <div class="terrain-legend">
+        <span><i class="sw" style="background:#8A8F98;"></i>${t("terrainRoad")}: ${tr.errepidea}%</span>
+        <span><i class="sw" style="background:#C98A3A;"></i>${t("terrainTrack")}: ${tr.pista}%</span>
+        <span><i class="sw" style="background:#5C8C6B;"></i>${t("terrainMountain")}: ${tr.mendia}%</span>
+      </div>
+    </div>`;
+}
+
+/* ============================================================
+   Orri arteko nabigazioa (behealdeko barra)
+   ============================================================ */
+function switchPage(page){
+  currentPage = page;
+  document.getElementById("pageHome").style.display = page==="home" ? "" : "none";
+  document.getElementById("pageIdeas").style.display = page==="ideas" ? "" : "none";
+  document.getElementById("pageData").style.display = page==="data" ? "" : "none";
+  document.querySelectorAll(".nav-btn").forEach(b=> b.classList.toggle("active", b.dataset.page===page));
+  document.getElementById("fabAdd").style.display = page==="home" ? "flex" : "none";
+  if(page==="ideas") renderIdeasPage();
+  if(page==="data") renderDataPage();
+}
+
+/* ============================================================
+   Datuak: Laburpena (helburuak/puntuak) + Egutegia
+   ============================================================ */
+let dataState = { subTab:"summary", periodType:"week", calYear:new Date().getFullYear(), calMonth:new Date().getMonth() };
+
+function periodKey(dateStr, type){
+  const d = new Date(dateStr+"T00:00:00");
+  if(type==="year") return String(d.getFullYear());
+  if(type==="month") return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
+  const day=d.getDay(); const diff=(day===0?-6:1-day);
+  const mon=new Date(d); mon.setDate(d.getDate()+diff);
+  return mon.toISOString().slice(0,10);
+}
+function periodLabel(key,type){
+  if(type==="year") return key;
+  if(type==="month"){ const parts=key.split("-"); const d=new Date(parseInt(parts[0]),parseInt(parts[1])-1,1); return d.toLocaleDateString(dateLocale(),{month:"long",year:"numeric"}); }
+  const start=new Date(key+"T00:00:00"); const end=new Date(start); end.setDate(start.getDate()+6);
+  return start.toLocaleDateString(dateLocale(),{day:"2-digit",month:"short"})+" - "+end.toLocaleDateString(dateLocale(),{day:"2-digit",month:"short"});
+}
+function aggregateEntries(type){
+  const buckets={};
+  state.calendarEntries.filter(e=>e.type==="done").forEach(e=>{
+    const idx = state.index.find(r=>r.id===e.routeId);
+    if(!idx) return;
+    const key = periodKey(e.date, type);
+    if(!buckets[key]) buckets[key]={km:0,gain:0,hours:0,count:0};
+    buckets[key].km += idx.distanceKm||0;
+    buckets[key].gain += idx.gainM||0;
+    buckets[key].hours += (idx.hasTimes && idx.totalTimeSec) ? idx.totalTimeSec/3600 : (timeForRoute(idx)||0);
+    buckets[key].count++;
+  });
+  return buckets;
+}
+function weeklyScoreFor(bucket){
+  const g = state.settings.goals||{};
+  const active=[];
+  if(g.weeklyKm) active.push(Math.min((bucket?bucket.km:0)/g.weeklyKm,1)*100);
+  if(g.weeklyHours) active.push(Math.min((bucket?bucket.hours:0)/g.weeklyHours,1)*100);
+  if(g.weeklyGain) active.push(Math.min((bucket?bucket.gain:0)/g.weeklyGain,1)*100);
+  if(!active.length) return null;
+  return active.reduce((a,b)=>a+b,0)/active.length;
+}
+function computePointsAndStreak(){
+  const buckets = aggregateEntries("week");
+  const keys = Object.keys(buckets);
+  let total=0;
+  keys.forEach(k=>{ const sc=weeklyScoreFor(buckets[k]); if(sc!=null) total += Math.round(sc/10); });
+  const curKey = periodKey(new Date().toISOString().slice(0,10), "week");
+  let streak=0;
+  let cursor = new Date(curKey+"T00:00:00");
+  while(true){
+    const k = cursor.toISOString().slice(0,10);
+    const sc = weeklyScoreFor(buckets[k]);
+    if(sc!=null && sc>=100){ streak++; cursor.setDate(cursor.getDate()-7); }
+    else break;
+  }
+  return {total, streak};
+}
+function renderDataPage(){
+  const root = document.getElementById("pageData");
+  root.innerHTML = `
+    <div class="subtabbar">
+      <button data-sub="summary" class="${dataState.subTab==='summary'?'active':''}">${t("summaryTitle")}</button>
+      <button data-sub="calendar" class="${dataState.subTab==='calendar'?'active':''}">${t("calendarTitle")}</button>
+    </div>
+    <div id="dataContent"></div>
+  `;
+  root.querySelectorAll("[data-sub]").forEach(b=> b.onclick=()=>{ dataState.subTab=b.dataset.sub; renderDataPage(); });
+  if(dataState.subTab==="summary") renderSummaryContent(document.getElementById("dataContent"));
+  else renderCalendarContent(document.getElementById("dataContent"));
+}
+function renderPeriodList(keys,buckets,type){
+  if(!keys.length) return `<p class="hint">${t("noPeriodDataHint")}</p>`;
+  return keys.map(k=>{
+    const b=buckets[k];
+    const score = weeklyScoreFor(b);
+    return `<div class="period-row">
+      <div class="period-label">${periodLabel(k,type)}</div>
+      <div class="period-stats">
+        <span>📏 ${fmtNum(distU(b.km),1)} ${distUnitLabel()}</span>
+        <span>⬆ ${eleU(b.gain)} ${eleUnitLabel()}</span>
+        <span>⏱ ${fmtHours(b.hours)}</span>
+      </div>
+      ${score!=null? `<div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${Math.min(score,100)}%"></div></div>`:""}
+    </div>`;
+  }).join("");
+}
+function renderSummaryContent(el){
+  const g = state.settings.goals||{};
+  const pts = computePointsAndStreak();
+  const type = dataState.periodType;
+  const buckets = aggregateEntries(type);
+  const keys = Object.keys(buckets).sort().reverse().slice(0,14);
+  el.innerHTML = `
+    <div class="points-banner">
+      <div><div class="lbl">${t("pointsLabel")}</div><div class="big">${pts.total}</div></div>
+      <div><div class="lbl">${t("streakLabelTpl")}</div><div class="big">${pts.streak}</div></div>
+    </div>
+    <div class="data-inner">
+      <div class="section-title" style="margin-top:0;">${t("goalsTitle")}</div>
+      <div class="range-row">
+        <div><label>${t("goalKmLabel")}</label><input type="number" id="goalKm" value="${g.weeklyKm||''}"></div>
+        <div><label>${t("goalHoursLabel")}</label><input type="number" id="goalHours" value="${g.weeklyHours||''}"></div>
+        <div><label>${t("goalGainLabel")}</label><input type="number" id="goalGain" value="${g.weeklyGain||''}"></div>
+      </div>
+      <button class="btn btn-secondary" id="saveGoals">${t("saveGoalsBtn")}</button>
+
+      <div class="tabbar" style="margin-top:22px;">
+        <button data-ptype="week" class="${type==='week'?'active':''}">${t("weekTab")}</button>
+        <button data-ptype="month" class="${type==='month'?'active':''}">${t("monthTab")}</button>
+        <button data-ptype="year" class="${type==='year'?'active':''}">${t("yearTab")}</button>
+      </div>
+      <div id="periodList">${renderPeriodList(keys,buckets,type)}</div>
+    </div>
+  `;
+  el.querySelector("#saveGoals").onclick = async ()=>{
+    state.settings.goals = {
+      weeklyKm: numOrNull(el.querySelector("#goalKm").value),
+      weeklyHours: numOrNull(el.querySelector("#goalHours").value),
+      weeklyGain: numOrNull(el.querySelector("#goalGain").value)
+    };
+    await dbSet("settings", state.settings);
+    renderSummaryContent(el);
+  };
+  el.querySelectorAll("[data-ptype]").forEach(b=> b.onclick=()=>{ dataState.periodType=b.dataset.ptype; renderSummaryContent(el); });
+}
+function renderCalendarContent(el){
+  const y=dataState.calYear, m=dataState.calMonth;
+  const first = new Date(y,m,1);
+  const startDay = (first.getDay()+6)%7;
+  const daysInMonth = new Date(y,m+1,0).getDate();
+  const monthLabel = first.toLocaleDateString(dateLocale(),{month:"long",year:"numeric"});
+  const dowLabels = state.settings.lang==="eu" ? ["Al","As","Az","Og","Or","La","Ig"] : ["Lu","Ma","Mi","Ju","Vi","Sá","Do"];
+  let cells="";
+  for(let i=0;i<startDay;i++) cells += `<div class="cal-cell empty"></div>`;
+  const todayStr = new Date().toISOString().slice(0,10);
+  for(let d=1; d<=daysInMonth; d++){
+    const dateStr = y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+    const entries = state.calendarEntries.filter(e=>e.date===dateStr);
+    const hasDone = entries.some(e=>e.type==="done");
+    const hasPlanned = entries.some(e=>e.type==="planned");
+    cells += `<div class="cal-cell ${dateStr===todayStr?'today':''}" data-date="${dateStr}">
+      <span class="cal-daynum">${d}</span>
+      <span class="cal-dots">${hasDone?'<span class="dot done"></span>':''}${hasPlanned?'<span class="dot planned"></span>':''}</span>
+    </div>`;
+  }
+  el.innerHTML = `
+    <div class="cal-header">
+      <button class="cal-nav-btn" id="calPrev">‹</button>
+      <b>${monthLabel}</b>
+      <button class="cal-nav-btn" id="calNext">›</button>
+    </div>
+    <div class="cal-grid cal-dow">${dowLabels.map(l=>`<div class="cal-dow-cell">${l}</div>`).join("")}</div>
+    <div class="cal-grid">${cells}</div>
+  `;
+  el.querySelector("#calPrev").onclick=()=>{ dataState.calMonth--; if(dataState.calMonth<0){dataState.calMonth=11; dataState.calYear--;} renderCalendarContent(el); };
+  el.querySelector("#calNext").onclick=()=>{ dataState.calMonth++; if(dataState.calMonth>11){dataState.calMonth=0; dataState.calYear++;} renderCalendarContent(el); };
+  el.querySelectorAll(".cal-cell[data-date]").forEach(c=> c.onclick=()=> openDaySheet(c.dataset.date));
+}
+function renderDayEntries(entries){
+  if(!entries.length) return `<p class="hint">${t("noEntriesForDay")}</p>`;
+  return entries.map(e=>{
+    const r = state.index.find(x=>x.id===e.routeId);
+    return `<div class="folder-row" data-eid="${e.id}">
+      <span>${r? escapeHtml(r.name):"?"} <span class="status-badge ${e.type==='done'?'hecha':'pendiente'}">${e.type==='done'?t('entryDoneOpt'):t('entryPlannedOpt')}</span></span>
+      <span><button class="small-btn" data-openroute="${e.routeId}">→</button><button class="small-btn" data-delentry="${e.id}">${t('deleteBtn')}</button></span>
+    </div>`;
+  }).join("");
+}
+function bindDayEntryEvents(overlay, dateStr){
+  overlay.querySelectorAll("[data-delentry]").forEach(b=>{
+    b.onclick = async ()=>{
+      state.calendarEntries = state.calendarEntries.filter(e=>e.id!==b.dataset.delentry);
+      await dbSet("calendarEntries", state.calendarEntries);
+      overlay.querySelector("#dayEntries").innerHTML = renderDayEntries(state.calendarEntries.filter(e=>e.date===dateStr));
+      bindDayEntryEvents(overlay, dateStr);
+      if(document.getElementById("pageData") && document.getElementById("pageData").style.display!=="none") renderDataPage();
+    };
+  });
+  overlay.querySelectorAll("[data-openroute]").forEach(b=>{
+    b.onclick = ()=>{ closeOverlay(); openDetail(b.dataset.openroute); };
+  });
+}
+function openDaySheet(dateStr){
+  const entries = state.calendarEntries.filter(e=>e.date===dateStr);
+  const d = new Date(dateStr+"T00:00:00");
+  const label = d.toLocaleDateString(dateLocale(),{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
+  if(!state.index.length){
+    const overlay = openOverlay(`<div class="sheet-title"><h2>${label}</h2><button class="close-x" data-close>×</button></div><p class="hint">${t("noEntriesForDay")}</p>`);
+    return;
+  }
+  const routeOpts = [`<option value="">${t("selectRoutePh")}</option>`, ...state.index.map(r=>`<option value="${r.id}">${escapeHtml(r.name)}</option>`)].join("");
+  const overlay = openOverlay(`
+    <div class="sheet-title"><h2>${label}</h2><button class="close-x" data-close>×</button></div>
+    <div id="dayEntries">${renderDayEntries(entries)}</div>
+    <label>${t("addEntryBtn")}</label>
+    <select id="dayRouteSel">${routeOpts}</select>
+    <div class="tabbar">
+      <button data-etype="done" class="active">${t("entryDoneOpt")}</button>
+      <button data-etype="planned">${t("entryPlannedOpt")}</button>
+    </div>
+    <button class="btn btn-primary" id="dayAddBtn">${t("addEntryBtn")}</button>
+  `);
+  let etype="done";
+  overlay.querySelectorAll("[data-etype]").forEach(b=> b.onclick=()=>{ etype=b.dataset.etype; overlay.querySelectorAll("[data-etype]").forEach(x=>x.classList.remove("active")); b.classList.add("active"); });
+  overlay.querySelector("#dayAddBtn").onclick = async ()=>{
+    const routeId = overlay.querySelector("#dayRouteSel").value;
+    if(!routeId) return;
+    state.calendarEntries.push({id:uid(), routeId, date:dateStr, type:etype});
+    await dbSet("calendarEntries", state.calendarEntries);
+    overlay.querySelector("#dayEntries").innerHTML = renderDayEntries(state.calendarEntries.filter(e=>e.date===dateStr));
+    bindDayEntryEvents(overlay, dateStr);
+    if(document.getElementById("pageData") && document.getElementById("pageData").style.display!=="none") renderDataPage();
+  };
+  bindDayEntryEvents(overlay, dateStr);
+}
+
+/* ============================================================
+   Ideiak: inguruko gailurrak (OpenStreetMap)
+   ============================================================ */
+let ideasState = { built:false, map:null, markers:[] };
+function renderIdeasPage(){
+  const root = document.getElementById("pageIdeas");
+  if(ideasState.built) return;
+  ideasState.built = true;
+  root.innerHTML = `
+    <div style="padding:16px;">
+      <h2 style="margin-bottom:6px;">${t("ideasTitle")}</h2>
+      <p class="hint">${t("ideasIntro")}</p>
+      <button class="btn btn-primary" id="findNearbyBtn">${t("findNearbyBtn")}</button>
+      <p id="ideasStatus" class="hint tabular"></p>
+    </div>
+    <div id="ideasMap"></div>
+    <div id="ideasList" style="padding:14px 16px 100px;"></div>
+  `;
+  root.querySelector("#findNearbyBtn").onclick = loadIdeas;
+}
+async function loadIdeas(){
+  const statusEl = document.getElementById("ideasStatus");
+  statusEl.textContent = t("ideasLocating");
+  let ref = {lat:43.0, lon:-2.5};
+  try{
+    const pos = await new Promise((res,rej)=> navigator.geolocation.getCurrentPosition(p=>res(p), rej, {timeout:8000}));
+    ref = {lat:pos.coords.latitude, lon:pos.coords.longitude};
+  }catch(e){ /* geolocation ez erabilgarri: erreferentzia lehenetsiarekin jarraitu */ }
+  try{
+    const bounds = {minLat:ref.lat-0.35,maxLat:ref.lat+0.35,minLon:ref.lon-0.45,maxLon:ref.lon+0.45};
+    const q = "[out:json][timeout:25];node[\"natural\"=\"peak\"](" + bounds.minLat + "," + bounds.minLon + "," + bounds.maxLat + "," + bounds.maxLon + ");out body;";
+    const resp = await fetch("https://overpass-api.de/api/interpreter", {method:"POST", body:"data="+encodeURIComponent(q)});
+    const data = await resp.json();
+    let peaks = (data.elements||[]).filter(p=>p.tags && p.tags.name).map(p=>({
+      name:p.tags.name, ele: p.tags.ele?parseFloat(p.tags.ele):null, lat:p.lat, lon:p.lon,
+      dist: haversine(ref, {lat:p.lat,lon:p.lon})/1000
+    }));
+    peaks.sort((a,b)=>a.dist-b.dist);
+    peaks = peaks.slice(0,25);
+    statusEl.textContent = "";
+    renderIdeasResults(ref, peaks);
+  }catch(e){
+    statusEl.textContent = t("ideasNoPeaks");
+  }
+}
+function renderIdeasResults(ref, peaks){
+  if(!ideasState.map){
+    ideasState.map = L.map("ideasMap");
+    makeTileLayer(state.settings.mapLayer||"osm").addTo(ideasState.map);
+  }
+  ideasState.markers.forEach(m=> ideasState.map.removeLayer(m));
+  ideasState.markers = [];
+  ideasState.map.setView([ref.lat, ref.lon], 10);
+  const refMarker = L.marker([ref.lat,ref.lon]).addTo(ideasState.map);
+  ideasState.markers.push(refMarker);
+  peaks.forEach(p=>{
+    const mk = L.marker([p.lat,p.lon], {icon: waypointIcon("cima")}).addTo(ideasState.map);
+    mk.bindPopup(escapeHtml(p.name));
+    ideasState.markers.push(mk);
+  });
+
+  const withDist = state.index.filter(r=>r.distanceKm!=null);
+  const avgKm = withDist.length? withDist.reduce((s,r)=>s+r.distanceKm,0)/withDist.length : null;
+  const avgGain = withDist.length? withDist.reduce((s,r)=>s+(r.gainM||0),0)/withDist.length : null;
+
+  const list = document.getElementById("ideasList");
+  let html = "";
+  if(avgKm!=null){
+    html += `<div class="avg-hint">${t("yourAvgTpl",{km:fmtNum(distU(avgKm),1)+" "+distUnitLabel(), gain:eleU(avgGain)+" "+eleUnitLabel()})}</div>`;
+  }
+  if(peaks.length){
+    html += peaks.map(p=>`<div class="route-card" style="cursor:default;margin-bottom:8px;">
+      <div class="rname">${escapeHtml(p.name)}</div>
+      <div class="route-stats">
+        ${p.ele!=null? `<span>⛰ ${eleU(p.ele)} ${eleUnitLabel()}</span>`:""}
+        <span>📍 ${fmtNum(distU(p.dist),1)} ${distUnitLabel()}</span>
+      </div>
+    </div>`).join("");
+  } else {
+    html += `<p class="hint">${t("ideasNoPeaks")}</p>`;
+  }
+  html += `<p class="hint" style="margin-top:14px;">${t("ideasAiNote")}</p>`;
+  list.innerHTML = html;
 }
 
 if("serviceWorker" in navigator && (location.protocol==="https:" || location.hostname==="localhost")){
